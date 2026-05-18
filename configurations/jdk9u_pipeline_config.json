@@ -1,0 +1,8 @@
+{
+  "buildConfigurations": {
+    "x64Mac": {},
+    "test": {},
+    "nightly": {},
+    "weekly": {}
+  }
+}
