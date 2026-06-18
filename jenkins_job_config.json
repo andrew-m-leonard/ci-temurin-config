@@ -86,6 +86,12 @@
       "SIGN_ARTIFACTS": false,
       "PUBLISH_ARTIFACTS": false,
       "RUN_REPRODUCIBLE_COMPARE": false
+    },
+    "logRotation": {
+      "daysToKeep": 30,
+      "numToKeep": 50,
+      "artifactDaysToKeep": 7,
+      "artifactNumToKeep": 10
     }
   }
 }
