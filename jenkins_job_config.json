@@ -71,5 +71,15 @@
   "defaultScmReference": "",
   "pipelineTimeoutHours": 8,
   "configFilePrefix": "configurations/",
-  "configFileSuffix": "_pipeline_config.json"
+  "configFileSuffix": "_pipeline_config.json",
+  "jobConfiguration": {
+    "defaultParameters": {
+      "BUILD_VARIANT": "temurin",
+      "CLEAN_WORKSPACE_AFTER_STAGE": true,
+      "RUN_TESTS": true,
+      "SIGN_ARTIFACTS": false,
+      "PUBLISH_ARTIFACTS": false,
+      "RUN_REPRODUCIBLE_COMPARE": false
+    }
+  }
 }
