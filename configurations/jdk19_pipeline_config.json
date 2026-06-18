@@ -192,5 +192,6 @@
     "riscv64Linux",
     "aarch64Windows"
   ],
-  "scmReference": "jdk19u"
+  "openjdkVersion": "jdk19u",
+  "enabled": false
 }

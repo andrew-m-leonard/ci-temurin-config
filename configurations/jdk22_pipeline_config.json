@@ -210,5 +210,6 @@
     "riscv64Linux",
     "aarch64Windows"
   ],
-  "scmReference": "jdk22u"
+  "openjdkVersion": "jdk22u",
+  "enabled": false
 }

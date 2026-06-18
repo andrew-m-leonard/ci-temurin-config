@@ -219,5 +219,6 @@
     "arm32Linux",
     "aarch64Linux"
   ],
-  "scmReference": "jdk8u"
+  "openjdkVersion": "jdk8u",
+  "enabled": true
 }

@@ -263,5 +263,6 @@
     "riscv64Linux",
     "aarch64Windows"
   ],
-  "scmReference": "jdk23u"
+  "openjdkVersion": "jdk23u",
+  "enabled": false
 }

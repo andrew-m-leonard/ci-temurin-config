@@ -1,21 +1,69 @@
 {
   "activeJdkVersions": [
-    "jdk11",
-    "jdk15",
-    "jdk16",
-    "jdk17",
-    "jdk18",
-    "jdk19",
-    "jdk20",
-    "jdk21",
-    "jdk22",
-    "jdk23",
-    "jdk24",
-    "jdk25",
-    "jdk26",
-    "jdk27",
-    "jdk28",
-    "jdk8"
+    {
+      "version": "jdk11",
+      "enabled": true
+    },
+    {
+      "version": "jdk15",
+      "enabled": false
+    },
+    {
+      "version": "jdk16",
+      "enabled": false
+    },
+    {
+      "version": "jdk17",
+      "enabled": true
+    },
+    {
+      "version": "jdk18",
+      "enabled": false
+    },
+    {
+      "version": "jdk19",
+      "enabled": false
+    },
+    {
+      "version": "jdk20",
+      "enabled": false
+    },
+    {
+      "version": "jdk21",
+      "enabled": true
+    },
+    {
+      "version": "jdk22",
+      "enabled": false
+    },
+    {
+      "version": "jdk23",
+      "enabled": false
+    },
+    {
+      "version": "jdk24",
+      "enabled": false
+    },
+    {
+      "version": "jdk25",
+      "enabled": true
+    },
+    {
+      "version": "jdk26",
+      "enabled": true
+    },
+    {
+      "version": "jdk27",
+      "enabled": true
+    },
+    {
+      "version": "jdk28",
+      "enabled": true
+    },
+    {
+      "version": "jdk8",
+      "enabled": true
+    }
   ],
   "defaultBuildArgs": "--create-jre-image --create-sbom",
   "defaultConfigureArgs": "",

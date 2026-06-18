@@ -305,5 +305,6 @@
     "aarch64Windows",
     "arm32Linux"
   ],
-  "scmReference": "jdk25u"
+  "openjdkVersion": "jdk25u",
+  "enabled": true
 }

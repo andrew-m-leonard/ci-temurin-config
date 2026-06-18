@@ -285,5 +285,6 @@
     "riscv64Linux",
     "aarch64Windows"
   ],
-  "scmReference": "jdk21u"
+  "openjdkVersion": "jdk21u",
+  "enabled": true
 }

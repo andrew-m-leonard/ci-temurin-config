@@ -110,5 +110,6 @@
     "aarch64Linux",
     "arm32Linux"
   ],
-  "scmReference": "jdk16u"
+  "openjdkVersion": "jdk16u",
+  "enabled": false
 }

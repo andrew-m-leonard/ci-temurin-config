@@ -151,5 +151,6 @@
     "aarch64Linux",
     "aarch64LinuxXL"
   ],
-  "scmReference": "jdk15u"
+  "openjdkVersion": "jdk15u",
+  "enabled": false
 }

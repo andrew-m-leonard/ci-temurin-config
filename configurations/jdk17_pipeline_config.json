@@ -212,5 +212,6 @@
     "riscv64Linux",
     "aarch64Windows"
   ],
-  "scmReference": "jdk17u"
+  "openjdkVersion": "jdk17u",
+  "enabled": true
 }

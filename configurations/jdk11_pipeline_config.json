@@ -300,5 +300,6 @@
     "riscv64Linux",
     "aarch64Windows"
   ],
-  "scmReference": "jdk11u"
+  "openjdkVersion": "jdk11u",
+  "enabled": true
 }

@@ -156,5 +156,6 @@
     "aarch64Mac",
     "arm32Linux"
   ],
-  "scmReference": "jdk18u"
+  "openjdkVersion": "jdk18u",
+  "enabled": false
 }
