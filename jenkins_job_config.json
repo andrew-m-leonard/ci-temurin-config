@@ -69,6 +69,7 @@
   "defaultConfigureArgs": "",
   "defaultVariant": "temurin",
   "defaultScmReference": "",
+  "pipelineTimeoutHours": 8,
   "configFilePrefix": "configurations/",
   "configFileSuffix": "_pipeline_config.json"
 }
