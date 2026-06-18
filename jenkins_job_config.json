@@ -1,110 +1,26 @@
 {
-  "description": "Jenkins Job DSL Configuration for Temurin Build Pipeline",
-  "version": "1.0.0",
-  "lastUpdated": "2026-06-17",
-
   "activeJdkVersions": [
-    {
-      "version": "8",
-      "fullVersion": "jdk8u",
-      "enabled": true,
-      "lts": true,
-      "configFile": "configurations/jdk8u_pipeline_config.json"
-    },
-    {
-      "version": "11",
-      "fullVersion": "jdk11u",
-      "enabled": true,
-      "lts": true,
-      "configFile": "configurations/jdk11u_pipeline_config.json"
-    },
-    {
-      "version": "17",
-      "fullVersion": "jdk17u",
-      "enabled": true,
-      "lts": true,
-      "configFile": "configurations/jdk17u_pipeline_config.json"
-    },
-    {
-      "version": "21",
-      "fullVersion": "jdk21u",
-      "enabled": true,
-      "lts": true,
-      "configFile": "configurations/jdk21u_pipeline_config.json"
-    },
-    {
-      "version": "25",
-      "fullVersion": "jdk25u",
-      "enabled": true,
-      "lts": true,
-      "configFile": "configurations/jdk25u_pipeline_config.json"
-    },
-    {
-      "version": "26",
-      "fullVersion": "jdk26u",
-      "enabled": true,
-      "lts": false,
-      "configFile": "configurations/jdk26u_pipeline_config.json"
-    },
-    {
-      "version": "27",
-      "fullVersion": "jdk27",
-      "enabled": true,
-      "lts": true,
-      "configFile": "configurations/jdk27_pipeline_config.json"
-    }
+    "jdk11",
+    "jdk15",
+    "jdk16",
+    "jdk17",
+    "jdk18",
+    "jdk19",
+    "jdk20",
+    "jdk21",
+    "jdk22",
+    "jdk23",
+    "jdk24",
+    "jdk25",
+    "jdk26",
+    "jdk27",
+    "jdk28",
+    "jdk8"
   ],
-
-  "jobConfiguration": {
-    "defaultParameters": {
-      "CONFIG_REPO_URL": "https://github.com/adoptium/ci-temurin-config.git",
-      "CONFIG_REPO_BRANCH": "main",
-      "BUILD_VARIANT": "temurin",
-      "CLEAN_WORKSPACE_AFTER_STAGE": true,
-      "RUN_TESTS": true,
-      "SIGN_ARTIFACTS": true,
-      "PUBLISH_ARTIFACTS": false,
-      "RUN_REPRODUCIBLE_COMPARE": false
-    },
-
-    "platformChoices": [
-      "linux-x64",
-      "linux-aarch64",
-      "linux-arm",
-      "linux-ppc64le",
-      "linux-s390x",
-      "windows-x64",
-      "windows-x86-32",
-      "windows-aarch64",
-      "mac-x64",
-      "mac-aarch64",
-      "aix-ppc64",
-      "alpine-linux-x64"
-    ],
-
-    "logRotation": {
-      "daysToKeep": 30,
-      "numToKeep": 100,
-      "artifactDaysToKeep": 30,
-      "artifactNumToKeep": 50
-    },
-
-    "triggers": {
-      "enablePeriodicBuilds": false,
-      "cronSchedule": "H 2 * * *"
-    }
-  },
-
-  "folderStructure": {
-    "rootFolder": "openjdk-builds",
-    "jobNamePattern": "jdk{version}-build-pipeline",
-    "displayNamePattern": "JDK {version} Build Pipeline"
-  },
-
-  "repository": {
-    "url": "https://github.com/andrew-m-leonard/ci-adoptium-pipelines.git",
-    "branch": "main",
-    "jenkinsfilePath": "ci/jenkins/Jenkinsfile.declarative",
-    "credentialsId": ""
-  }
+  "defaultBuildArgs": "--create-jre-image --create-sbom",
+  "defaultConfigureArgs": "",
+  "defaultVariant": "temurin",
+  "defaultScmReference": "",
+  "configFilePrefix": "configurations/",
+  "configFileSuffix": "_pipeline_config.json"
 }

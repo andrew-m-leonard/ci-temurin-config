@@ -1,20 +1,24 @@
 {
-  "version": "jdk16u",
+  "version": "jdk18",
   "buildConfigurations": {
-
     "x64Mac": {
       "os": "mac",
       "arch": "x64",
       "additionalNodeLabels": "macos10.14",
+      "additionalTestLabels": {
+        "openj9": "!sw.os.osx.10_11"
+      },
       "test": "default",
-      "configureArgs": "--enable-dtrace"
+      "configureArgs": "--enable-dtrace",
+      "buildArgs": {
+        "temurin": "--create-jre-image --create-sbom"
+      }
     },
-
     "x64Linux": {
       "os": "linux",
       "arch": "x64",
       "dockerImage": {
-        "hotspot": "adoptopenjdk/centos6_build_image",
+        "temurin": "adoptopenjdk/centos6_build_image",
         "openj9": "adoptopenjdk/centos7_build_image"
       },
       "dockerFile": {
@@ -26,86 +30,116 @@
       },
       "configureArgs": {
         "openj9": "--enable-dtrace --enable-jitserver",
-        "hotspot": "--enable-dtrace"
+        "temurin": "--enable-dtrace"
+      },
+      "buildArgs": {
+        "temurin": "--create-source-archive --create-jre-image --create-sbom"
       }
     },
-
     "x64AlpineLinux": {
       "os": "alpine-linux",
       "arch": "x64",
       "dockerImage": "adoptopenjdk/alpine3_build_image",
       "test": "default",
-      "configureArgs": "--enable-headless-only=yes"
+      "configureArgs": "--enable-headless-only=yes",
+      "buildArgs": {
+        "temurin": "--create-jre-image --create-sbom"
+      }
     },
-
     "aarch64AlpineLinux": {
       "os": "alpine-linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/alpine3_build_image",
       "test": "default",
-      "configureArgs": "--enable-headless-only=yes"
+      "configureArgs": "--enable-headless-only=yes",
+      "buildArgs": {
+        "temurin": "--create-jre-image --create-sbom"
+      }
     },
-
     "x64Windows": {
       "os": "windows",
       "arch": "x64",
-      "additionalNodeLabels": "win2012&&vs2017",
-      "test": "default"
+      "additionalNodeLabels": "win2012&&vs2019",
+      "test": "default",
+      "buildArgs": {
+        "temurin": "--create-jre-image --create-sbom"
+      }
     },
-
     "x32Windows": {
       "os": "windows",
       "arch": "x86-32",
-      "additionalNodeLabels": "win2012&&vs2017",
+      "additionalNodeLabels": "win2012&&vs2019",
+      "test": "default",
       "buildArgs": {
-        "hotspot": "--jvm-variant client,server"
-      },
-      "test": "default"
+        "temurin": "--jvm-variant client,server --create-jre-image --create-sbom"
+      }
     },
-
     "ppc64Aix": {
       "os": "aix",
       "arch": "ppc64",
       "additionalNodeLabels": {
-        "hotspot": "xlc16&&aix710",
+        "temurin": "xlc16&&aix710",
         "openj9": "xlc16&&aix715"
       },
       "test": "default",
-      "cleanWorkspaceAfterBuild": true
+      "cleanWorkspaceAfterBuild": true,
+      "buildArgs": {
+        "temurin": "--create-jre-image --create-sbom"
+      }
     },
-
     "s390xLinux": {
       "os": "linux",
       "arch": "s390x",
       "test": "default",
-      "configureArgs": "--enable-dtrace"
+      "configureArgs": "--enable-dtrace",
+      "buildArgs": {
+        "temurin": "--create-jre-image --create-sbom"
+      }
     },
-
     "ppc64leLinux": {
       "os": "linux",
       "arch": "ppc64le",
       "additionalNodeLabels": "centos7",
       "test": "default",
       "configureArgs": {
-        "hotspot": "--enable-dtrace",
+        "temurin": "--enable-dtrace",
         "openj9": "--enable-dtrace --enable-jitserver"
+      },
+      "buildArgs": {
+        "temurin": "--create-jre-image --create-sbom"
       }
     },
-
     "aarch64Linux": {
       "os": "linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/centos7_build_image",
       "test": "default",
       "configureArgs": "--enable-dtrace",
-      "testDynamic": false
+      "testDynamic": false,
+      "buildArgs": {
+        "temurin": "--create-jre-image --create-sbom"
+      }
     },
-
+    "aarch64Mac": {
+      "os": "mac",
+      "arch": "aarch64",
+      "additionalNodeLabels": "macos11",
+      "test": "default",
+      "buildArgs": {
+        "temurin": "--create-jre-image --create-sbom"
+      }
+    },
     "arm32Linux": {
       "os": "linux",
       "arch": "arm",
+      "crossCompile": "aarch64",
+      "dockerImage": "adoptopenjdk/ubuntu1604_build_image",
+      "dockerArgs": "--platform linux/arm/v7",
       "test": "default",
-      "configureArgs": "--enable-dtrace"
+      "configureArgs": "--enable-dtrace",
+      "buildArgs": {
+        "temurin": "--create-jre-image --create-sbom"
+      }
     }
   },
   "targetConfigurations": [
@@ -119,6 +153,8 @@
     "s390xLinux",
     "ppc64leLinux",
     "aarch64Linux",
+    "aarch64Mac",
     "arm32Linux"
-  ]
+  ],
+  "scmReference": "jdk18u"
 }

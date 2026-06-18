@@ -1,7 +1,6 @@
 {
-  "version": "jdk8u",
+  "version": "jdk8",
   "buildConfigurations": {
-
     "x64Mac": {
       "os": "mac",
       "arch": "x64",
@@ -17,7 +16,6 @@
         "temurin": "--create-sbom"
       }
     },
-
     "x64Linux": {
       "os": "linux",
       "arch": "x64",
@@ -27,7 +25,20 @@
         "dragonwell": "pipelines/build/dockerFiles/dragonwell.dockerfile"
       },
       "test": {
-        "weekly": ["sanity.openjdk", "sanity.system", "extended.system", "sanity.perf", "sanity.functional", "extended.functional", "extended.openjdk", "extended.perf", "special.functional", "sanity.external", "dev.openjdk", "dev.functional"]
+        "weekly": [
+          "sanity.openjdk",
+          "sanity.system",
+          "extended.system",
+          "sanity.perf",
+          "sanity.functional",
+          "extended.functional",
+          "extended.openjdk",
+          "extended.perf",
+          "special.functional",
+          "sanity.external",
+          "dev.openjdk",
+          "dev.functional"
+        ]
       },
       "additionalTestParams": {
         "temurin": {
@@ -42,7 +53,6 @@
         "temurin": "--create-source-archive --create-sbom --enable-sbom-strace"
       }
     },
-
     "x64AlpineLinux": {
       "os": "alpine-linux",
       "arch": "x64",
@@ -56,7 +66,6 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-
     "aarch64AlpineLinux": {
       "os": "alpine-linux",
       "arch": "aarch64",
@@ -70,7 +79,6 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-
     "x64Windows": {
       "os": "windows",
       "arch": "x64",
@@ -86,7 +94,6 @@
         "temurin": "--create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     },
-
     "x32Windows": {
       "os": "windows",
       "arch": "x86-32",
@@ -102,7 +109,6 @@
       },
       "test": "default"
     },
-
     "ppc64Aix": {
       "os": "aix",
       "arch": "ppc64",
@@ -117,7 +123,6 @@
         "temurin": "--create-sbom"
       }
     },
-
     "s390xLinux": {
       "os": "linux",
       "arch": "s390x",
@@ -135,7 +140,6 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-
     "sparcv9Solaris": {
       "os": "solaris",
       "arch": "sparcv9",
@@ -147,7 +151,6 @@
         "temurin": "--create-sbom"
       }
     },
-
     "x64Solaris": {
       "os": "solaris",
       "arch": "x64",
@@ -159,7 +162,6 @@
         "temurin": "--create-sbom"
       }
     },
-
     "ppc64leLinux": {
       "os": "linux",
       "arch": "ppc64le",
@@ -172,7 +174,6 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-
     "arm32Linux": {
       "os": "linux",
       "arch": "arm",
@@ -187,7 +188,6 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-
     "aarch64Linux": {
       "os": "linux",
       "arch": "aarch64",
@@ -218,5 +218,6 @@
     "ppc64leLinux",
     "arm32Linux",
     "aarch64Linux"
-  ]
+  ],
+  "scmReference": "jdk8u"
 }

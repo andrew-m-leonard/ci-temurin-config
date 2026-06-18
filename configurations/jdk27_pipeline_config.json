@@ -1,7 +1,6 @@
 {
   "version": "jdk27",
   "buildConfigurations": {
-
     "x64Mac": {
       "os": "mac",
       "arch": "x64",
@@ -10,14 +9,27 @@
         "openj9": "!sw.os.osx.10_11"
       },
       "test": {
-        "weekly": ["sanity.openjdk", "sanity.system", "extended.system", "sanity.perf", "sanity.functional", "extended.functional", "extended.openjdk", "extended.perf", "special.functional", "special.openjdk", "dev.functional", "dev.system", "special.system"]
+        "weekly": [
+          "sanity.openjdk",
+          "sanity.system",
+          "extended.system",
+          "sanity.perf",
+          "sanity.functional",
+          "extended.functional",
+          "extended.openjdk",
+          "extended.perf",
+          "special.functional",
+          "special.openjdk",
+          "dev.functional",
+          "dev.system",
+          "special.system"
+        ]
       },
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-
     "x64Linux": {
       "os": "linux",
       "arch": "x64",
@@ -26,7 +38,21 @@
         "openj9": "pipelines/build/dockerFiles/cuda.dockerfile"
       },
       "test": {
-        "weekly": ["sanity.openjdk", "sanity.system", "extended.system", "sanity.perf", "sanity.functional", "extended.functional", "extended.openjdk", "extended.perf", "special.functional", "dev.openjdk", "dev.functional", "dev.system", "special.system"]
+        "weekly": [
+          "sanity.openjdk",
+          "sanity.system",
+          "extended.system",
+          "sanity.perf",
+          "sanity.functional",
+          "extended.functional",
+          "extended.openjdk",
+          "extended.perf",
+          "special.functional",
+          "dev.openjdk",
+          "dev.functional",
+          "dev.system",
+          "special.system"
+        ]
       },
       "additionalTestLabels": {
         "openj9": "!sw.tool.glibc.2_12",
@@ -46,7 +72,6 @@
         "hotspot": "--create-jre-image --create-sbom --use-adoptium-devkit gcc-14.2.0-Centos7.9.2009-b01"
       }
     },
-
     "x64AlpineLinux": {
       "os": "alpine-linux",
       "arch": "x64",
@@ -57,7 +82,6 @@
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
       }
     },
-
     "aarch64AlpineLinux": {
       "os": "alpine-linux",
       "arch": "aarch64",
@@ -71,7 +95,6 @@
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
       }
     },
-
     "x64Windows": {
       "os": "windows",
       "arch": "x64",
@@ -80,13 +103,26 @@
       "dockerCredential": "bbb9fa70-a1de-4853-b564-5f02193329ac",
       "additionalNodeLabels": "win2022&&vs2022",
       "test": {
-        "weekly": ["sanity.openjdk", "sanity.system", "extended.system", "sanity.perf", "sanity.functional", "extended.functional", "extended.openjdk", "extended.perf", "special.functional", "special.openjdk", "dev.functional", "dev.system", "special.system"]
+        "weekly": [
+          "sanity.openjdk",
+          "sanity.system",
+          "extended.system",
+          "sanity.perf",
+          "sanity.functional",
+          "extended.functional",
+          "extended.openjdk",
+          "extended.perf",
+          "special.functional",
+          "special.openjdk",
+          "dev.functional",
+          "dev.system",
+          "special.system"
+        ]
       },
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     },
-
     "ppc64Aix": {
       "os": "aix",
       "arch": "ppc64",
@@ -108,7 +144,6 @@
         }
       }
     },
-
     "s390xLinux": {
       "os": "linux",
       "arch": "s390x",
@@ -118,13 +153,25 @@
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace --use-adoptium-devkit gcc-14.2.0-Centos7.9.2009-b01"
       }
     },
-
     "ppc64leLinux": {
       "os": "linux",
       "arch": "ppc64le",
       "dockerImage": "adoptopenjdk/centos7_build_image",
       "test": {
-        "weekly": ["sanity.openjdk", "sanity.system", "extended.system", "sanity.perf", "sanity.functional", "extended.functional", "extended.openjdk", "extended.perf", "special.functional", "special.openjdk", "dev.functional", "special.system"]
+        "weekly": [
+          "sanity.openjdk",
+          "sanity.system",
+          "extended.system",
+          "sanity.perf",
+          "sanity.functional",
+          "extended.functional",
+          "extended.openjdk",
+          "extended.perf",
+          "special.functional",
+          "special.openjdk",
+          "dev.functional",
+          "special.system"
+        ]
       },
       "configureArgs": {
         "openj9": "--enable-dtrace"
@@ -133,13 +180,25 @@
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace --use-adoptium-devkit gcc-14.2.0-Centos7.9.2009-b01"
       }
     },
-
     "aarch64Linux": {
       "os": "linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/centos7_build_image",
       "test": {
-        "weekly": ["sanity.openjdk", "sanity.system", "extended.system", "sanity.perf", "sanity.functional", "extended.functional", "extended.openjdk", "extended.perf", "special.functional", "special.openjdk", "dev.functional", "special.system"]
+        "weekly": [
+          "sanity.openjdk",
+          "sanity.system",
+          "extended.system",
+          "sanity.perf",
+          "sanity.functional",
+          "extended.functional",
+          "extended.openjdk",
+          "extended.perf",
+          "special.functional",
+          "special.openjdk",
+          "dev.functional",
+          "special.system"
+        ]
       },
       "configureArgs": {
         "openj9": "--enable-dtrace",
@@ -150,19 +209,31 @@
         "hotspot": "--create-jre-image --create-sbom --use-adoptium-devkit gcc-14.2.0-Centos7.6.1810-b01"
       }
     },
-
     "aarch64Mac": {
       "os": "mac",
       "arch": "aarch64",
       "additionalNodeLabels": "xcode15.0.1",
       "test": {
-        "weekly": ["sanity.openjdk", "sanity.system", "extended.system", "sanity.perf", "sanity.functional", "extended.functional", "extended.openjdk", "extended.perf", "special.functional", "special.openjdk", "dev.functional", "dev.system", "special.system"]
+        "weekly": [
+          "sanity.openjdk",
+          "sanity.system",
+          "extended.system",
+          "sanity.perf",
+          "sanity.functional",
+          "extended.functional",
+          "extended.openjdk",
+          "extended.perf",
+          "special.functional",
+          "special.openjdk",
+          "dev.functional",
+          "dev.system",
+          "special.system"
+        ]
       },
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-
     "riscv64Linux": {
       "os": "linux",
       "arch": "riscv64",
@@ -175,7 +246,6 @@
         "temurin": "--create-jre-image --create-sbom --use-adoptium-devkit gcc-14.2.0-Fedora_28-b00"
       }
     },
-
     "aarch64Windows": {
       "os": "windows",
       "arch": "aarch64",
@@ -189,7 +259,6 @@
         "temurin": "--create-jre-image --create-sbom --cross-compile --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     },
-
     "arm32Linux": {
       "os": "linux",
       "arch": "arm",
@@ -220,5 +289,6 @@
     "riscv64Linux",
     "aarch64Windows",
     "arm32Linux"
-  ]
+  ],
+  "scmReference": "jdk27u"
 }

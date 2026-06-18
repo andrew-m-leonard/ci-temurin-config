@@ -1,7 +1,6 @@
 {
-  "version": "jdk11u",
+  "version": "jdk11",
   "buildConfigurations": {
-
     "x64Mac": {
       "os": "mac",
       "arch": "x64",
@@ -15,7 +14,6 @@
         "temurin": "--create-sbom"
       }
     },
-
     "x64Linux": {
       "os": "linux",
       "arch": "x64",
@@ -24,7 +22,20 @@
         "openj9": "pipelines/build/dockerFiles/cuda.dockerfile"
       },
       "test": {
-        "weekly": ["sanity.openjdk", "sanity.system", "extended.system", "sanity.perf", "sanity.functional", "extended.functional", "extended.openjdk", "extended.perf", "special.functional", "sanity.external", "dev.openjdk", "dev.functional"]
+        "weekly": [
+          "sanity.openjdk",
+          "sanity.system",
+          "extended.system",
+          "sanity.perf",
+          "sanity.functional",
+          "extended.functional",
+          "extended.openjdk",
+          "extended.perf",
+          "special.functional",
+          "sanity.external",
+          "dev.openjdk",
+          "dev.functional"
+        ]
       },
       "additionalTestParams": {
         "temurin": {
@@ -44,7 +55,6 @@
         "temurin": "--create-source-archive --create-sbom --enable-sbom-strace"
       }
     },
-
     "x64AlpineLinux": {
       "os": "alpine-linux",
       "arch": "x64",
@@ -58,7 +68,6 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-
     "aarch64AlpineLinux": {
       "os": "alpine-linux",
       "arch": "aarch64",
@@ -72,7 +81,6 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-
     "x64Windows": {
       "os": "windows",
       "arch": "x64",
@@ -92,7 +100,6 @@
       },
       "test": "default"
     },
-
     "x32Windows": {
       "os": "windows",
       "arch": "x86-32",
@@ -108,7 +115,6 @@
       },
       "test": "default"
     },
-
     "ppc64Aix": {
       "os": "aix",
       "arch": "ppc64",
@@ -123,7 +129,6 @@
         "temurin": "--create-sbom"
       }
     },
-
     "s390xLinux": {
       "os": "linux",
       "arch": "s390x",
@@ -137,7 +142,6 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-
     "sparcv9Solaris": {
       "os": "solaris",
       "arch": "sparcv9",
@@ -150,7 +154,6 @@
         "temurin": "--create-sbom"
       }
     },
-
     "ppc64leLinux": {
       "os": "linux",
       "arch": "ppc64le",
@@ -164,7 +167,6 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-
     "aarch64Mac": {
       "os": "mac",
       "arch": "aarch64",
@@ -175,7 +177,6 @@
         "temurin": "--create-sbom"
       }
     },
-
     "arm32Linux": {
       "os": "linux",
       "arch": "arm",
@@ -191,7 +192,6 @@
         "temurin": "--create-sbom"
       }
     },
-
     "aarch64Linux": {
       "os": "linux",
       "arch": "aarch64",
@@ -214,7 +214,6 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-
     "riscv64Linux": {
       "os": "linux",
       "arch": "riscv64",
@@ -244,16 +243,29 @@
       "test": {
         "temurin": "default",
         "openj9": {
-          "nightly": ["sanity.openjdk"],
-          "weekly": ["sanity.openjdk", "sanity.system", "extended.system", "sanity.perf"]
+          "nightly": [
+            "sanity.openjdk"
+          ],
+          "weekly": [
+            "sanity.openjdk",
+            "sanity.system",
+            "extended.system",
+            "sanity.perf"
+          ]
         },
         "bisheng": {
-          "nightly": ["sanity.openjdk"],
-          "weekly": ["sanity.openjdk", "sanity.system", "extended.system", "sanity.perf"]
+          "nightly": [
+            "sanity.openjdk"
+          ],
+          "weekly": [
+            "sanity.openjdk",
+            "sanity.system",
+            "extended.system",
+            "sanity.perf"
+          ]
         }
       }
     },
-
     "aarch64Windows": {
       "os": "windows",
       "arch": "aarch64",
@@ -287,5 +299,6 @@
     "aarch64Linux",
     "riscv64Linux",
     "aarch64Windows"
-  ]
+  ],
+  "scmReference": "jdk11u"
 }
