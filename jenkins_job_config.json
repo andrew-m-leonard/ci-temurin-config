@@ -76,7 +76,7 @@
     "url": "https://github.com/andrew-m-leonard/ci-adoptium-pipelines.git",
     "branch": "main",
     "credentialsId": "",
-    "jenkinsfilePath": "ci/jenkins/Jenkinsfile"
+    "jenkinsfilePath": "ci/jenkins/Jenkinsfile.declarative"
   },
   "jobConfiguration": {
     "defaultParameters": {
