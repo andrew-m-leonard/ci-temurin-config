@@ -73,7 +73,7 @@
   "configFilePrefix": "configurations/",
   "configFileSuffix": "_pipeline_config.json",
   "repository": {
-    "url": "https://github.com/andrew-m-leonard/ci-adoptium-pipelines.git",
+    "url": "https://github.com/adoptium/ci-adoptium-pipelines.git",
     "branch": "main",
     "credentialsId": "",
     "jenkinsfilePath": "ci/jenkins/Jenkinsfile.declarative"
@@ -83,6 +83,7 @@
       "VARIANT": "temurin",
       "CLEAN_WORKSPACE_AFTER_STAGE": true,
       "RUN_TESTS": false,
+      "ENABLE_INSTALLERS": false,
       "SIGN_ARTIFACTS": false,
       "PUBLISH_ARTIFACTS": false,
       "RUN_REPRODUCIBLE_COMPARE": true
