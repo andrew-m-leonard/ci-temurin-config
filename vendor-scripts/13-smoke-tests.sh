@@ -17,11 +17,10 @@ set -euo pipefail
 
 # ---------------------------------------------------------------------------
 # Resolve script directory to find shared lib utilities from ci-adoptium-pipelines
-# When invoked from Jenkins the pipeline workspace contains both repos:
-#   WORKSPACE/scripts/lib/  <- ci-adoptium-pipelines (checked out by initializeStage)
-#   WORKSPACE/config-repo/vendor-scripts/  <- this file
+# PIPELINE_ROOT: set by CI pipelines where WORKSPACE is not the location of
+#   the ci-adoptium-pipelines repo. Falls back to WORKSPACE if not set.
 # ---------------------------------------------------------------------------
-PIPELINE_LIB="${WORKSPACE}/scripts/lib"
+PIPELINE_LIB="${PIPELINE_ROOT:-${WORKSPACE}}/scripts/lib"
 source "${PIPELINE_LIB}/logging-utils.sh"
 source "${PIPELINE_LIB}/config-utils.sh"
 
