@@ -102,7 +102,7 @@ main() {
         --vendor_repos "${temurin_build_repo}" \
         --vendor_branches "${temurin_build_branch}" \
         --vendor_dirs "${TEMURIN_FUNCTIONAL_DIR}" \
-        --clone_openj9 false
+        --clone_openj9 true
 
     # -----------------------------------------------------------------------
     # Compile and run the test suite
