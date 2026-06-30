@@ -30,8 +30,6 @@ source "${PIPELINE_LIB}/config-utils.sh"
 # ---------------------------------------------------------------------------
 STAGE_NAME="smoke-tests"
 BUILD_NUMBER="${BUILD_NUMBER:-local}"
-AQA_TESTS_REPO="https://github.com/adoptium/aqa-tests.git"
-TEMURIN_BUILD_REPO="https://github.com/adoptium/temurin-build"
 TEMURIN_FUNCTIONAL_DIR="/test/functional"
 BUILD_LIST="functional/buildAndPackage"
 TARGET_SUITE="extended.functional"
@@ -46,22 +44,30 @@ main() {
     local target_os
     local architecture
     local aqa_ref
+    local aqa_repo_url
     local build_ref
+    local build_repo_url
     java_version=$(get_config_value "${CONFIG_FILE}" ".buildConfig.JAVA_TO_BUILD")
     target_os=$(get_config_value "${CONFIG_FILE}" ".buildConfig.TARGET_OS")
     architecture=$(get_config_value "${CONFIG_FILE}" ".buildConfig.ARCHITECTURE")
-    aqa_ref=$(get_config_value "${CONFIG_FILE}" ".refs.aqaRef" "master")
-    build_ref=$(get_config_value "${CONFIG_FILE}" ".refs.buildRef" "master")
+    aqa_ref=$(get_config_value "${CONFIG_FILE}" ".refs.aqaRef")
+    aqa_repo_url=$(get_config_value "${CONFIG_FILE}" ".refs.aqaRepoUrl")
+    build_ref=$(get_config_value "${CONFIG_FILE}" ".refs.buildRef")
+    build_repo_url=$(get_config_value "${CONFIG_FILE}" ".refs.buildRepoUrl")
 
     local aqa_tests_branch="${aqa_ref}"
+    local aqa_tests_repo="${aqa_repo_url}"
     local temurin_build_branch="${build_ref}"
+    local temurin_build_repo="${build_repo_url}"
 
     log_info "Test Configuration:"
     log_info "  Java Version     : ${java_version}"
     log_info "  Target OS        : ${target_os}"
     log_info "  Architecture     : ${architecture}"
     log_info "  AQA Suite        : ${BUILD_LIST} / ${TARGET_SUITE}"
+    log_info "  AQA Repo         : ${aqa_tests_repo}"
     log_info "  AQA Ref          : ${aqa_tests_branch}"
+    log_info "  Temurin Build    : ${temurin_build_repo}"
     log_info "  Temurin Build Ref: ${temurin_build_branch}"
 
     # -----------------------------------------------------------------------
@@ -85,8 +91,8 @@ main() {
         log_error "Cannot guarantee its contents — aborting. Remove it and retry."
         exit 1
     fi
-    log_info "Cloning aqa-tests from ${AQA_TESTS_REPO} @ ${aqa_tests_branch} ..."
-    git clone --depth 1 --branch "${aqa_tests_branch}" "${AQA_TESTS_REPO}" "${aqa_dir}"
+    log_info "Cloning aqa-tests from ${aqa_tests_repo} @ ${aqa_tests_branch} ..."
+    git clone --depth 1 --branch "${aqa_tests_branch}" "${aqa_tests_repo}" "${aqa_dir}"
 
     # -----------------------------------------------------------------------
     # Run get.sh to pull in temurin-build functional tests
@@ -94,7 +100,7 @@ main() {
     log_section "Running aqa-tests get.sh"
     cd "${aqa_dir}"
     bash get.sh \
-        --vendor_repos "${TEMURIN_BUILD_REPO}" \
+        --vendor_repos "${temurin_build_repo}" \
         --vendor_branches "${temurin_build_branch}" \
         --vendor_dirs "${TEMURIN_FUNCTIONAL_DIR}" \
         --clone_openj9 false
