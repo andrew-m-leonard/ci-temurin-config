@@ -31,9 +31,7 @@ source "${PIPELINE_LIB}/config-utils.sh"
 STAGE_NAME="smoke-tests"
 BUILD_NUMBER="${BUILD_NUMBER:-local}"
 AQA_TESTS_REPO="https://github.com/adoptium/aqa-tests.git"
-AQA_TESTS_BRANCH="${AQA_REF:-master}"
 TEMURIN_BUILD_REPO="https://github.com/adoptium/temurin-build"
-TEMURIN_BUILD_BRANCH="master"
 TEMURIN_FUNCTIONAL_DIR="/test/functional"
 BUILD_LIST="functional/buildAndPackage"
 TARGET_SUITE="extended.functional"
@@ -47,15 +45,24 @@ main() {
     local java_version
     local target_os
     local architecture
+    local aqa_ref
+    local build_ref
     java_version=$(get_config_value "${CONFIG_FILE}" ".buildConfig.JAVA_TO_BUILD")
     target_os=$(get_config_value "${CONFIG_FILE}" ".buildConfig.TARGET_OS")
     architecture=$(get_config_value "${CONFIG_FILE}" ".buildConfig.ARCHITECTURE")
+    aqa_ref=$(get_config_value "${CONFIG_FILE}" ".refs.aqaRef" "master")
+    build_ref=$(get_config_value "${CONFIG_FILE}" ".refs.buildRef" "master")
+
+    local aqa_tests_branch="${aqa_ref}"
+    local temurin_build_branch="${build_ref}"
 
     log_info "Test Configuration:"
-    log_info "  Java Version : ${java_version}"
-    log_info "  Target OS    : ${target_os}"
-    log_info "  Architecture : ${architecture}"
-    log_info "  AQA Suite    : ${BUILD_LIST} / ${TARGET_SUITE}"
+    log_info "  Java Version     : ${java_version}"
+    log_info "  Target OS        : ${target_os}"
+    log_info "  Architecture     : ${architecture}"
+    log_info "  AQA Suite        : ${BUILD_LIST} / ${TARGET_SUITE}"
+    log_info "  AQA Ref          : ${aqa_tests_branch}"
+    log_info "  Temurin Build Ref: ${temurin_build_branch}"
 
     # -----------------------------------------------------------------------
     # Locate and extract the JDK artifact
@@ -74,11 +81,12 @@ main() {
     # -----------------------------------------------------------------------
     local aqa_dir="${WORKSPACE}/aqa-tests"
     if [[ -d "${aqa_dir}" ]]; then
-        log_info "aqa-tests already cloned — reusing"
-    else
-        log_info "Cloning aqa-tests from ${AQA_TESTS_REPO} @ ${AQA_TESTS_BRANCH} ..."
-        git clone --depth 1 --branch "${AQA_TESTS_BRANCH}" "${AQA_TESTS_REPO}" "${aqa_dir}"
+        log_error "aqa-tests directory already exists: ${aqa_dir}"
+        log_error "Cannot guarantee its contents — aborting. Remove it and retry."
+        exit 1
     fi
+    log_info "Cloning aqa-tests from ${AQA_TESTS_REPO} @ ${aqa_tests_branch} ..."
+    git clone --depth 1 --branch "${aqa_tests_branch}" "${AQA_TESTS_REPO}" "${aqa_dir}"
 
     # -----------------------------------------------------------------------
     # Run get.sh to pull in temurin-build functional tests
@@ -87,7 +95,7 @@ main() {
     cd "${aqa_dir}"
     bash get.sh \
         --vendor_repos "${TEMURIN_BUILD_REPO}" \
-        --vendor_branches "${TEMURIN_BUILD_BRANCH}" \
+        --vendor_branches "${temurin_build_branch}" \
         --vendor_dirs "${TEMURIN_FUNCTIONAL_DIR}" \
         --clone_openj9 false
 
