@@ -1,369 +1,201 @@
-# Eclipse Temurin Pipeline Configurations
+# ci-temurin-config
 
-This repository contains the JSON-format pipeline configurations for Eclipse Temurin OpenJDK builds. These configurations are used by the [ci-adoptium-pipelines](https://github.com/adoptium/ci-adoptium-pipelines) build system.
+Vendor configuration repository for Eclipse Temurin OpenJDK builds. Consumed at runtime by the [ci-adoptium-pipelines](https://github.com/adoptium/ci-adoptium-pipelines) build system.
 
-## 📋 Overview
-
-This repository implements the **code/config separation** pattern, where:
-- **Pipeline code** lives in [`ci-adoptium-pipelines`](https://github.com/adoptium/ci-adoptium-pipelines)
-- **Pipeline configuration** lives here in `ci-temurin-config`
-
-This separation allows:
-- ✅ Independent versioning of code and configuration
-- ✅ Temurin-specific configurations without affecting pipeline code
-- ✅ Easy testing with different configurations
-- ✅ Clear ownership boundaries
-
-## 📁 Repository Structure
-
-```
-ci-temurin-config/
-├── configurations/              # JSON configuration files
-│   ├── jdk8u_pipeline_config.json
-│   ├── jdk11u_pipeline_config.json
-│   ├── jdk17u_pipeline_config.json
-│   ├── jdk21u_pipeline_config.json
-│   └── ...
-├── convert-all-configs.sh      # Batch conversion tool
-└── README.md                   # This file
-```
-
-## 🎯 Configuration Files
-
-### Available Configurations
-
-| JDK Version | Configuration File | Status |
-|-------------|-------------------|--------|
-| JDK 8u | `jdk8u_pipeline_config.json` | ✅ Active |
-| JDK 11u | `jdk11u_pipeline_config.json` | ✅ Active |
-| JDK 17u | `jdk17u_pipeline_config.json` | ✅ Active |
-| JDK 21u | `jdk21u_pipeline_config.json` | ✅ Active |
-| JDK 22u | `jdk22u_pipeline_config.json` | ✅ Active |
-| JDK 23u | `jdk23u_pipeline_config.json` | ✅ Active |
-| JDK 24u | `jdk24u_pipeline_config.json` | 🔄 Development |
-| JDK 25u | `jdk25u_pipeline_config.json` | 🔄 Development |
-| JDK 26u | `jdk26u_pipeline_config.json` | 🔄 Development |
-| JDK 27 | `jdk27_pipeline_config.json` | 🔄 Development |
-
-### Configuration Format
-
-Each configuration file follows this JSON schema:
-
-```json
-{
-  "version": "jdk21u",
-  "scmReference": "jdk21u",
-  "buildConfigurations": {
-    "x64Linux": {
-      "os": "linux",
-      "arch": "x64",
-      "additionalNodeLabels": "centos6&&build",
-      "test": "default",
-      "dockerImage": "adoptopenjdk/centos6_build_image",
-      "dockerFile": "pipelines/build/dockerFiles/cuda.dockerfile",
-      "configureArgs": "--enable-unlimited-crypto --with-zlib=system",
-      "buildArgs": "--create-sbom"
-    },
-    "x64Mac": {
-      "os": "mac",
-      "arch": "x64",
-      "additionalNodeLabels": "macos",
-      "test": "default",
-      "configureArgs": "--enable-unlimited-crypto"
-    }
-  },
-  "targetConfigurations": [
-    "x64Linux",
-    "x64Mac",
-    "x64Windows",
-    "aarch64Linux",
-    "aarch64Mac"
-  ]
-}
-```
-
-### Key Fields
-
-- **`version`**: JDK version identifier (e.g., "jdk21u")
-- **`scmReference`**: Git branch/tag for OpenJDK source
-- **`buildConfigurations`**: Platform-specific build settings
-  - **`os`**: Operating system (linux, mac, windows, aix)
-  - **`arch`**: Architecture (x64, aarch64, ppc64, s390x)
-  - **`configureArgs`**: Arguments for OpenJDK configure script
-  - **`buildArgs`**: Arguments for make-adopt-build-farm.sh
-  - **`dockerImage`**: Docker image for containerized builds
-  - **`test`**: Test configuration (default, or custom test list)
-- **`targetConfigurations`**: List of platforms to build
-
-## 🚀 Usage
-
-### With Jenkins
-
-The Jenkins pipeline automatically loads configurations from this repository:
-
-```groovy
-parameters {
-    string(
-        name: 'CONFIG_REPO_URL',
-        defaultValue: 'https://github.com/adoptium/ci-temurin-config.git',
-        description: 'Configuration repository URL'
-    )
-    string(
-        name: 'CONFIG_REPO_BRANCH',
-        defaultValue: 'main',
-        description: 'Configuration repository branch'
-    )
-}
-```
-
-### Local Testing
-
-Test configurations locally using `run-pipeline.py`:
-
-```bash
-# Clone both repositories
-git clone https://github.com/adoptium/ci-adoptium-pipelines.git
-git clone https://github.com/adoptium/ci-temurin-config.git
-
-# Run pipeline with Temurin config
-cd ci-adoptium-pipelines
-python3 run-pipeline.py \
-  --config ../ci-temurin-config/configurations/jdk21u_pipeline_config.json \
-  --platform x64Mac \
-  --variant temurin
-```
-
-### Testing Configuration Changes
-
-Before committing configuration changes:
-
-1. **Validate JSON syntax**:
-```bash
-jq empty configurations/jdk21u_pipeline_config.json
-```
-
-2. **Test locally**:
-```bash
-python3 ../ci-adoptium-pipelines/run-pipeline.py \
-  --config configurations/jdk21u_pipeline_config.json \
-  --platform x64Linux \
-  --variant temurin
-```
-
-3. **Run in Jenkins** (test branch):
-   - Create feature branch
-   - Update `CONFIG_REPO_BRANCH` parameter to your branch
-   - Run test build
-
-## 🔄 Migration from Groovy
-
-This repository was created by converting legacy Groovy configurations to JSON format.
-
-### Conversion Process
-
-The configurations were converted using the batch conversion tool:
-
-```bash
-./convert-all-configs.sh
-```
-
-This tool:
-1. Reads Groovy config files from `ci-jenkins-pipelines`
-2. Parses build configurations
-3. Generates JSON files
-4. Validates output
-
-### Manual Review Required
-
-After conversion, each configuration should be reviewed for:
-- ✅ Nested map structures
-- ✅ Test configurations
-- ✅ Docker settings
-- ✅ Variant-specific values
-- ✅ Platform-specific overrides
-
-## 📝 Making Changes
-
-### Adding a New Platform
-
-1. Edit the relevant `jdkNN_pipeline_config.json`
-2. Add new platform to `buildConfigurations`:
-
-```json
-{
-  "buildConfigurations": {
-    "aarch64Windows": {
-      "os": "windows",
-      "arch": "aarch64",
-      "additionalNodeLabels": "windows&&arm64",
-      "configureArgs": "--enable-unlimited-crypto"
-    }
-  },
-  "targetConfigurations": [
-    "aarch64Windows"
-  ]
-}
-```
-
-3. Test locally
-4. Create pull request
-
-### Modifying Build Arguments
-
-1. Locate platform in configuration file
-2. Update `configureArgs` or `buildArgs`:
-
-```json
-{
-  "x64Linux": {
-    "configureArgs": "--enable-unlimited-crypto --with-zlib=system --with-freetype=bundled"
-  }
-}
-```
-
-3. Test changes
-4. Create pull request
-
-### Adding Test Configurations
-
-Test configurations can be simple or complex:
-
-**Simple (default tests)**:
-```json
-{
-  "test": "default"
-}
-```
-
-**Complex (build-type specific)**:
-```json
-{
-  "test": {
-    "nightly": ["sanity.openjdk", "sanity.system"],
-    "weekly": ["extended.openjdk", "extended.system"],
-    "release": ["sanity.openjdk", "extended.openjdk"]
-  }
-}
-```
-
-## 🔐 Security
-
-### What Goes in This Repository
-
-✅ **Safe to include**:
-- Platform configurations
-- Build arguments
-- Docker image names
-- Test configurations
-- Node labels
-
-❌ **Never include**:
-- Credentials or passwords
-- API keys or tokens
-- Private URLs
-- Signing certificates
-- Proprietary information
-
-**Note**: Even though this is a public repository, sensitive values should be managed through Jenkins credentials, not configuration files.
-
-## 🤝 Contributing
-
-### Pull Request Process
-
-1. **Create feature branch**:
-```bash
-git checkout -b feature/add-riscv64-support
-```
-
-2. **Make changes** to configuration files
-
-3. **Validate**:
-```bash
-# JSON syntax
-jq empty configurations/*.json
-
-# Local test
-python3 ../ci-adoptium-pipelines/run-pipeline.py \
-  --config configurations/jdk21u_pipeline_config.json \
-  --platform x64Linux \
-  --variant temurin
-```
-
-4. **Commit**:
-```bash
-git add configurations/
-git commit -m "feat(jdk21u): add RISC-V 64 support"
-```
-
-5. **Push and create PR**:
-```bash
-git push origin feature/add-riscv64-support
-```
-
-### Commit Message Format
-
-Follow conventional commits:
-
-```
-<type>(<scope>): <subject>
-
-<body>
-
-<footer>
-```
-
-**Types**:
-- `feat`: New platform or feature
-- `fix`: Bug fix in configuration
-- `docs`: Documentation changes
-- `refactor`: Configuration restructuring
-- `test`: Test configuration changes
-
-**Examples**:
-```
-feat(jdk21u): add aarch64 Windows support
-
-Add build configuration for Windows on ARM64.
-Includes Docker image and configure args.
-
-Closes #123
-```
-
-```
-fix(jdk17u): correct macOS configure args
-
-Remove deprecated --with-freetype flag that
-causes build failures on macOS 13+.
-
-Fixes #456
-```
-
-## 📚 Related Documentation
-
-- [ci-adoptium-pipelines](https://github.com/adoptium/ci-adoptium-pipelines) - Pipeline implementation
-- [CODE_CONFIG_SEPARATION.md](https://github.com/adoptium/ci-adoptium-pipelines/blob/main/CODE_CONFIG_SEPARATION.md) - Architecture pattern
-- [CONFIGURATION_GUIDE.md](https://github.com/adoptium/ci-adoptium-pipelines/blob/main/CONFIGURATION_GUIDE.md) - Configuration schema
-- [Adoptium Documentation](https://adoptium.net/docs/) - General Adoptium docs
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/adoptium/ci-temurin-config/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/adoptium/ci-temurin-config/discussions)
-- **Slack**: [Adoptium Slack](https://adoptium.net/slack)
-- **Mailing List**: [adoptium-dev](https://mail.openjdk.org/mailman/listinfo/adoptium-dev)
-
-## 📄 License
-
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Eclipse Adoptium community
-- Original ci-jenkins-pipelines contributors
-- All configuration maintainers
+This repository implements the code/config separation pattern: all pipeline *code* lives in `ci-adoptium-pipelines`; all Temurin-specific *configuration* and *stage overrides* live here. The pipeline clones this repo at the start of every build (Initialize stage) via the `CONFIG_REPO_URL` / `CONFIG_REPO_BRANCH` parameters.
 
 ---
 
-**Maintained by the Eclipse Adoptium Infrastructure Team**
+## Repository Structure
 
-*Making OpenJDK builds configurable and maintainable.*
+```
+ci-temurin-config/
+├── adoptium_pipeline_config.json        # Top-level pipeline defaults and repository URLs
+├── jenkins_job_config.json              # Jenkins job DSL settings (log rotation, default parameters)
+├── configurations/                      # Per-JDK-version platform build matrices
+│   ├── jdk8_pipeline_config.json
+│   ├── jdk11_pipeline_config.json
+│   ├── jdk17_pipeline_config.json
+│   ├── jdk21_pipeline_config.json
+│   ├── jdk25_pipeline_config.json
+│   ├── jdk26_pipeline_config.json
+│   ├── jdk27_pipeline_config.json
+│   ├── jdk28_pipeline_config.json
+│   └── ...  (jdk15–jdk24 present but disabled)
+└── vendor-scripts/                      # Temurin-specific stage script overrides
+    ├── 12-validate-sbom.sh
+    ├── 13-smoke-tests.sh
+    └── 20-reproducible-compare.sh
+```
+
+---
+
+## Configuration Files
+
+### `adoptium_pipeline_config.json`
+
+Top-level file read by the Launch pipeline (`Jenkinsfile.launch`) and the local runner. Defines:
+
+| Field | Purpose |
+|---|---|
+| `activeJdkVersions` | Array of `{ "version": "jdkNN", "enabled": true/false }` entries — controls which JDK versions the Launch pipeline fans out to |
+| `defaultBuildArgs` | Build args passed to every platform unless overridden (e.g. `"--create-jre-image --create-sbom"`) |
+| `defaultConfigureArgs` | OpenJDK `configure` args passed to every platform unless overridden |
+| `defaultVariant` | Variant string (`"temurin"`) used when variant-keyed config fields are resolved |
+| `defaultScmReference` | Default SCM ref/tag — empty means use the version's default branch |
+| `configFilePrefix` / `configFileSuffix` | Template for locating per-version config files (e.g. `"configurations/"` + `"_pipeline_config.json"`) |
+| `repository.url` | `ci-adoptium-pipelines` repo URL |
+| `repository.branch` | Pipeline code branch |
+| `repository.buildRepoUrl` / `buildBranch` | `temurin-build` repo URL and branch |
+| `repository.aqaRepoUrl` / `aqaBranch` | `aqa-tests` repo URL and branch |
+
+### `jenkins_job_config.json`
+
+Read by the Jenkins Job DSL seed job to configure generated pipeline jobs. Fields:
+
+| Field | Purpose |
+|---|---|
+| `jenkinsfilePath` | Path to the Jenkinsfile within `ci-adoptium-pipelines` (e.g. `"ci/jenkins/Jenkinsfile.declarative"`) |
+| `pipelineTimeoutHours` | Global build timeout in hours |
+| `jobConfiguration.defaultParameters` | Default values for pipeline parameters (`VARIANT`, `CLEAN_WORKSPACE_AFTER_STAGE`, `RUN_TESTS`, `ENABLE_INSTALLERS`, `SIGN_ARTIFACTS`, `PUBLISH_ARTIFACTS`, `RUN_REPRODUCIBLE_COMPARE`) |
+| `jobConfiguration.logRotation` | Artifact and build retention policy (`daysToKeep`, `numToKeep`, `artifactDaysToKeep`, `artifactNumToKeep`) |
+
+### `configurations/jdkNN_pipeline_config.json`
+
+One file per JDK version. Defines the platform build matrix for that version. Top-level fields:
+
+| Field | Purpose |
+|---|---|
+| `version` | Version identifier (e.g. `"jdk21"`) |
+| `openjdkVersion` | OpenJDK source version string (e.g. `"jdk21u"`) — may differ from `version` for update releases |
+| `enabled` | Whether this version is active |
+| `buildConfigurations` | Map of platform-key → platform config (see below) |
+| `targetConfigurations` | Ordered list of platform keys to build — determines which platforms are triggered |
+
+**Platform configuration keys** (inside `buildConfigurations.<platformKey>`):
+
+| Field | Type | Purpose |
+|---|---|---|
+| `os` | string | Target OS: `linux`, `mac`, `windows`, `aix`, `alpine-linux`, `solaris` |
+| `arch` | string | Target arch: `x64`, `aarch64`, `ppc64`, `ppc64le`, `s390x`, `arm`, `riscv64`, `x86-32`, `sparcv9` |
+| `additionalNodeLabels` | string or variant-map | Jenkins node label expression (or per-variant map) |
+| `dockerImage` | string or variant-map | Docker image name for containerised builds |
+| `dockerRegistry` | string | Docker registry URL (e.g. `https://adoptium.azurecr.io`) |
+| `dockerCredential` | string | Jenkins credentials ID for the registry |
+| `dockerArgs` | string | Extra arguments passed to `docker run` (e.g. `"--platform linux/riscv64"`) |
+| `dockerFile` | string or variant-map | Path to a Dockerfile override |
+| `crossCompile` | string | Cross-compile host arch or emulator (e.g. `"x64"`, `"qemustatic"`) |
+| `configureArgs` | string or variant-map | Arguments appended to OpenJDK `configure` |
+| `buildArgs` | string or variant-map | Arguments passed to `make-adopt-build-farm.sh` / `02-build.sh` |
+| `test` | string or object | `"default"` for the standard suite; an object with release-type keys (`nightly`, `weekly`, `release`) for selective suites |
+| `additionalTestLabels` | string or variant-map | AQA test node label expressions |
+| `additionalTestParams` | variant-map of objects | Extra AQA parameters per variant (e.g. `{ "temurin": { "CLOUD_PROVIDER": "azure" } }`) |
+| `cleanWorkspaceAfterBuild` | bool | Clean the workspace after Build stage (useful for space-constrained nodes) |
+
+**Variant-keyed fields**: many fields accept either a plain string (applied to all variants) or an object keyed by variant name (e.g. `"temurin"`, `"openj9"`, `"hotspot"`) to allow per-variant overrides:
+
+```json
+"configureArgs": {
+    "temurin": "--enable-dtrace",
+    "openj9": "--enable-dtrace --enable-jitserver"
+}
+```
+
+**Example — a modern LTS platform entry:**
+
+```json
+"aarch64Linux": {
+    "os": "linux",
+    "arch": "aarch64",
+    "dockerImage": "adoptopenjdk/centos7_build_image",
+    "configureArgs": {
+        "temurin": "--enable-dtrace --with-jobs=4"
+    },
+    "buildArgs": {
+        "temurin": "--create-jre-image --create-sbom --enable-sbom-strace --use-adoptium-devkit gcc-11.3.0-Centos7.6.1810-b04"
+    },
+    "test": {
+        "weekly": ["sanity.openjdk", "extended.functional", "extended.openjdk"]
+    }
+}
+```
+
+### Active JDK versions (current)
+
+| Version | File | Enabled |
+|---|---|---|
+| JDK 8 | `jdk8_pipeline_config.json` | Yes |
+| JDK 11 | `jdk11_pipeline_config.json` | Yes |
+| JDK 17 | `jdk17_pipeline_config.json` | Yes |
+| JDK 21 | `jdk21_pipeline_config.json` | Yes |
+| JDK 25 | `jdk25_pipeline_config.json` | Yes |
+| JDK 26 | `jdk26_pipeline_config.json` | Yes |
+| JDK 27 | `jdk27_pipeline_config.json` | Yes |
+| JDK 28 | `jdk28_pipeline_config.json` | Yes |
+| JDK 15–16, 18–24 | present | No (`"enabled": false`) |
+
+---
+
+## Vendor Scripts
+
+The `vendor-scripts/` directory contains Temurin-specific overrides for pipeline stage scripts. At runtime the stage resolver checks this directory first; if a matching script is found it takes priority over the default stub in `ci-adoptium-pipelines/scripts/stages/`.
+
+### `13-smoke-tests.sh`
+
+Runs the AQA `extended.functional` / `functional/buildAndPackage` test suite against the freshly built JDK. Clones `aqa-tests`, runs `get.sh` to pull in `temurin-build` functional tests, then invokes `make compile && make _extended.functional` via the TKG test framework.
+
+Sources `${PIPELINE_ROOT}/scripts/lib/logging-utils.sh` and `config-utils.sh` from `ci-adoptium-pipelines`.
+
+**Required env:** `WORKSPACE`, `CONFIG_FILE`, `INPUT_ARTIFACTS_DIR`, `TARGET_DIR`, `BUILD_NUMBER`
+**Reads from config:** `JAVA_TO_BUILD`, `TARGET_OS`, `ARCHITECTURE`, `refs.aqaRef`, `refs.aqaRepoUrl`, `refs.buildRef`, `refs.buildRepoUrl`
+**Outputs:** TKG result tree in `TARGET_DIR/`, `TARGET_DIR/smoke-test-summary.json`
+
+### `12-validate-sbom.sh`
+
+Validates SBOM JSON files produced by the Build stage. Clones `temurin-build` and invokes `tooling/validateSBOM.sh` against every `*sbom*.json` file found in `INPUT_ARTIFACTS_DIR`. Only meaningful when `--create-sbom` is in `buildArgs`.
+
+**Required env:** `WORKSPACE`, `CONFIG_FILE`, `INPUT_ARTIFACTS_DIR`, `TARGET_DIR`
+**Optional env:** `TEMURIN_BUILD_REPO`, `TEMURIN_BUILD_BRANCH`, `JAVA_VERSION`, `SCM_REF`
+
+### `20-reproducible-compare.sh`
+
+Downloads the published Adoptium production binary for the same version from `api.adoptium.net`, unpacks both the production and locally built JDKs, then delegates to `temurin-build/tooling/reproducible/repro_compare.sh` for byte-level comparison.
+
+Sources `${PIPELINE_ROOT}/scripts/lib/logging-utils.sh` and `config-utils.sh` from `ci-adoptium-pipelines`.
+
+**Required env:** `WORKSPACE`, `CONFIG_FILE`, `INPUT_ARTIFACTS_DIR`, `TARGET_DIR`, `SCM_REF`, `RELEASE`, `PIPELINE_ROOT`
+**Optional env:** `BUILD_REPO_URL`, `BUILD_REF`
+**Outputs:** `TARGET_DIR/comparison-report.txt`, `TARGET_DIR/reprotest.diff`, `TARGET_DIR/ReproduciblePercent`
+
+---
+
+## Local Usage
+
+```bash
+# Clone both repos
+git clone https://github.com/adoptium/ci-adoptium-pipelines.git
+git clone https://github.com/adoptium/ci-temurin-config.git
+
+# Run a full pipeline locally (Initialize + Build + Smoke Tests)
+cd ci-adoptium-pipelines
+python3 ci/local/run-pipeline.py \
+    --workspace ~/openjdk-build \
+    --jdk-version jdk21 \
+    --target-os mac \
+    --arch aarch64 \
+    --release-type NIGHTLY \
+    --config-repo-url ../ci-temurin-config \
+    --config-repo-branch main
+
+# Validate JSON syntax before committing
+jq empty ../ci-temurin-config/configurations/jdk21_pipeline_config.json
+```
+
+---
+
+## Related Documentation
+
+- [ci-adoptium-pipelines](https://github.com/adoptium/ci-adoptium-pipelines) — pipeline code
+- [docs/CODE_CONFIG_SEPARATION.md](https://github.com/adoptium/ci-adoptium-pipelines/blob/main/docs/CODE_CONFIG_SEPARATION.md) — config repo schema reference
+- [docs/PIPELINE_RUNNER_GUIDE.md](https://github.com/adoptium/ci-adoptium-pipelines/blob/main/docs/PIPELINE_RUNNER_GUIDE.md) — local runner CLI reference
+- [docs/CI_AGNOSTIC_ARCHITECTURE.md](https://github.com/adoptium/ci-adoptium-pipelines/blob/main/docs/CI_AGNOSTIC_ARCHITECTURE.md) — pipeline architecture overview
