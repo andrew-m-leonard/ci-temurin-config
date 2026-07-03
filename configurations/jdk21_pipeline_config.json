@@ -34,7 +34,6 @@
       "os": "linux",
       "arch": "x64",
       "dockerImage": "ghcr.io/adoptium/adoptium_build_image:centos7_linux-amd64",
-   "podmanArgs": "-u 1000:1000 --userns keep-id:uid=1000,gid=1000",
       "dockerFile": {
         "openj9": "pipelines/build/dockerFiles/cuda.dockerfile"
       },
