@@ -17,7 +17,7 @@
     "x64Linux": {
       "os": "linux",
       "arch": "x64",
-      "dockerImage": "adoptopenjdk/centos6_build_image",
+      "dockerImage": "ghcr.io/adoptium/adoptium_build_image:centos7_linux-amd64",
       "dockerFile": {
         "openj9": "pipelines/build/dockerFiles/cuda.dockerfile"
       },
