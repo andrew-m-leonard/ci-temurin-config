@@ -5,16 +5,14 @@
       "os": "mac",
       "arch": "x64",
       "additionalNodeLabels": "macos10.14",
-      "configureArgs": "--enable-dtrace",
-      "additionalSmokeTestNodeLabels": ""
+      "configureArgs": "--enable-dtrace"
     },
     "x64MacXL": {
       "os": "mac",
       "arch": "x64",
       "additionalNodeLabels": "macos10.14",
       "additionalFileNameTag": "macosXL",
-      "configureArgs": "--with-noncompressedrefs --enable-dtrace",
-      "additionalSmokeTestNodeLabels": ""
+      "configureArgs": "--with-noncompressedrefs --enable-dtrace"
     },
     "x64Linux": {
       "os": "linux",
@@ -26,14 +24,10 @@
       "dockerFile": {
         "openj9": "pipelines/build/dockerFiles/cuda.dockerfile"
       },
-      "additionalTestLabels": {
-        "openj9": "!(centos6||rhel6)"
-      },
       "configureArgs": {
         "openj9": "--enable-dtrace --enable-jitserver",
         "hotspot": "--enable-dtrace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "x64LinuxXL": {
       "os": "linux",
@@ -42,26 +36,20 @@
       "dockerFile": {
         "openj9": "pipelines/build/dockerFiles/cuda.dockerfile"
       },
-      "additionalTestLabels": {
-        "openj9": "!(centos6||rhel6)"
-      },
       "additionalFileNameTag": "linuxXL",
-      "configureArgs": "--with-noncompressedrefs --enable-dtrace --enable-jitserver",
-      "additionalSmokeTestNodeLabels": ""
+      "configureArgs": "--with-noncompressedrefs --enable-dtrace --enable-jitserver"
     },
     "x64Windows": {
       "os": "windows",
       "arch": "x64",
-      "additionalNodeLabels": "win2012&&vs2017",
-      "additionalSmokeTestNodeLabels": ""
+      "additionalNodeLabels": "win2012&&vs2017"
     },
     "x64WindowsXL": {
       "os": "windows",
       "arch": "x64",
       "additionalNodeLabels": "win2012&&vs2017",
       "additionalFileNameTag": "windowsXL",
-      "configureArgs": "--with-noncompressedrefs",
-      "additionalSmokeTestNodeLabels": ""
+      "configureArgs": "--with-noncompressedrefs"
     },
     "x32Windows": {
       "os": "windows",
@@ -69,8 +57,7 @@
       "additionalNodeLabels": "win2012&&vs2017",
       "buildArgs": {
         "hotspot": "--jvm-variant client,server"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "ppc64Aix": {
       "os": "aix",
@@ -78,21 +65,18 @@
       "additionalNodeLabels": {
         "hotspot": "xlc16&&aix710",
         "openj9": "xlc16&&aix715"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "s390xLinux": {
       "os": "linux",
       "arch": "s390x",
-      "configureArgs": "--enable-dtrace",
-      "additionalSmokeTestNodeLabels": ""
+      "configureArgs": "--enable-dtrace"
     },
     "s390xLinuxXL": {
       "os": "linux",
       "arch": "s390x",
       "additionalFileNameTag": "linuxXL",
-      "configureArgs": "--with-noncompressedrefs --enable-dtrace",
-      "additionalSmokeTestNodeLabels": ""
+      "configureArgs": "--with-noncompressedrefs --enable-dtrace"
     },
     "ppc64leLinux": {
       "os": "linux",
@@ -101,37 +85,32 @@
       "configureArgs": {
         "hotspot": "--enable-dtrace",
         "openj9": "--enable-dtrace --enable-jitserver"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "ppc64leLinuxXL": {
       "os": "linux",
       "arch": "ppc64le",
       "additionalNodeLabels": "centos7",
       "additionalFileNameTag": "linuxXL",
-      "configureArgs": "--with-noncompressedrefs --disable-ccache --enable-dtrace",
-      "additionalSmokeTestNodeLabels": ""
+      "configureArgs": "--with-noncompressedrefs --disable-ccache --enable-dtrace"
     },
     "arm32Linux": {
       "os": "linux",
       "arch": "arm",
-      "configureArgs": "--enable-dtrace",
-      "additionalSmokeTestNodeLabels": ""
+      "configureArgs": "--enable-dtrace"
     },
     "aarch64Linux": {
       "os": "linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/centos7_build_image",
-      "configureArgs": "--enable-dtrace",
-      "additionalSmokeTestNodeLabels": ""
+      "configureArgs": "--enable-dtrace"
     },
     "aarch64LinuxXL": {
       "os": "linux",
       "dockerImage": "adoptopenjdk/centos7_build_image",
       "arch": "aarch64",
       "additionalFileNameTag": "linuxXL",
-      "configureArgs": "--with-noncompressedrefs --enable-dtrace",
-      "additionalSmokeTestNodeLabels": ""
+      "configureArgs": "--with-noncompressedrefs --enable-dtrace"
     }
   },
   "targetConfigurations": [

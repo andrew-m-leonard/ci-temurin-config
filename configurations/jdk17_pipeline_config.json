@@ -5,14 +5,10 @@
       "os": "mac",
       "arch": "x64",
       "additionalNodeLabels": "xcode15.0.1",
-      "additionalTestLabels": {
-        "openj9": "!sw.os.osx.10_11"
-      },
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "x64Linux": {
       "os": "linux",
@@ -24,17 +20,13 @@
       "dockerFile": {
         "openj9": "pipelines/build/dockerFiles/cuda.dockerfile"
       },
-      "additionalTestLabels": {
-        "openj9": "!sw.tool.glibc.2_12"
-      },
       "configureArgs": {
         "openj9": "--enable-dtrace",
         "temurin": "--enable-dtrace"
       },
       "buildArgs": {
         "temurin": "--create-source-archive --create-jre-image --create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "x64AlpineLinux": {
       "os": "alpine-linux",
@@ -43,8 +35,7 @@
       "configureArgs": "--enable-headless-only=yes",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "aarch64AlpineLinux": {
       "os": "alpine-linux",
@@ -56,8 +47,7 @@
       },
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "x64Windows": {
       "os": "windows",
@@ -68,8 +58,7 @@
       "additionalNodeLabels": "win2022&&vs2022",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "x32Windows": {
       "os": "windows",
@@ -80,19 +69,16 @@
       "additionalNodeLabels": "win2022&&vs2022",
       "buildArgs": {
         "temurin": "--jvm-variant client,server --create-jre-image --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "ppc64Aix": {
       "os": "aix",
       "arch": "ppc64",
       "additionalNodeLabels": "xlc13&&aix720",
-      "additionalTestLabels": "sw.os.aix.7_2",
       "cleanWorkspaceAfterBuild": true,
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "s390xLinux": {
       "os": "linux",
@@ -101,8 +87,7 @@
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "ppc64leLinux": {
       "os": "linux",
@@ -110,8 +95,7 @@
       "dockerImage": "adoptopenjdk/centos7_build_image",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "aarch64Linux": {
       "os": "linux",
@@ -123,8 +107,7 @@
       },
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "aarch64Mac": {
       "os": "mac",
@@ -132,8 +115,7 @@
       "additionalNodeLabels": "xcode15.0.1",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "arm32Linux": {
       "os": "linux",
@@ -147,8 +129,7 @@
       },
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "riscv64Linux": {
       "os": "linux",
@@ -159,8 +140,7 @@
       "configureArgs": "--enable-headless-only=yes --enable-dtrace",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --use-adoptium-devkit gcc-14.2.0-Fedora_28-b00"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "aarch64Windows": {
       "os": "windows",
@@ -172,8 +152,7 @@
       "additionalNodeLabels": "win2022&&vs2022",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --cross-compile --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     }
   },
   "targetConfigurations": [

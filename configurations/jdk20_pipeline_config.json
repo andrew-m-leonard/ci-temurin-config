@@ -5,14 +5,10 @@
       "os": "mac",
       "arch": "x64",
       "additionalNodeLabels": "macos11",
-      "additionalTestLabels": {
-        "openj9": "!sw.os.osx.10_11"
-      },
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "x64Linux": {
       "os": "linux",
@@ -21,18 +17,13 @@
       "dockerFile": {
         "openj9": "pipelines/build/dockerFiles/cuda.dockerfile"
       },
-      "additionalTestLabels": {
-        "openj9": "!(centos6||rhel6)",
-        "temurin": "!(centos6||rhel6)"
-      },
       "configureArgs": {
         "openj9": "--enable-dtrace",
         "temurin": "--enable-dtrace"
       },
       "buildArgs": {
         "temurin": "--create-source-archive --create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "x64AlpineLinux": {
       "os": "alpine-linux",
@@ -41,8 +32,7 @@
       "configureArgs": "--enable-headless-only=yes",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "aarch64AlpineLinux": {
       "os": "alpine-linux",
@@ -51,8 +41,7 @@
       "configureArgs": "--enable-headless-only=yes",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "x64Windows": {
       "os": "windows",
@@ -60,8 +49,7 @@
       "additionalNodeLabels": "win2022&&vs2019",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "ppc64Aix": {
       "os": "aix",
@@ -70,14 +58,10 @@
         "temurin": "xlc16&&aix720",
         "openj9": "xlc16&&aix715"
       },
-      "additionalTestLabels": {
-        "temurin": "sw.os.aix.7_2"
-      },
       "cleanWorkspaceAfterBuild": true,
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "s390xLinux": {
       "os": "linux",
@@ -86,8 +70,7 @@
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "ppc64leLinux": {
       "os": "linux",
@@ -99,8 +82,7 @@
       },
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "aarch64Linux": {
       "os": "linux",
@@ -109,8 +91,7 @@
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "aarch64Mac": {
       "os": "mac",
@@ -118,8 +99,7 @@
       "additionalNodeLabels": "macos11",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "arm32Linux": {
       "os": "linux",
@@ -130,8 +110,7 @@
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "riscv64Linux": {
       "os": "linux",
@@ -142,8 +121,7 @@
       "configureArgs": "--enable-headless-only=yes --enable-dtrace",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "aarch64Windows": {
       "os": "windows",
@@ -152,8 +130,7 @@
       "additionalNodeLabels": "win2022&&vs2019",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --cross-compile"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     }
   },
   "targetConfigurations": [

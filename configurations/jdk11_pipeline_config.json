@@ -11,8 +11,7 @@
       },
       "buildArgs": {
         "temurin": "--create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "x64Linux": {
       "os": "linux",
@@ -32,8 +31,7 @@
       },
       "buildArgs": {
         "temurin": "--create-source-archive --create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "x64AlpineLinux": {
       "os": "alpine-linux",
@@ -45,8 +43,7 @@
       },
       "buildArgs": {
         "temurin": "--create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "aarch64AlpineLinux": {
       "os": "alpine-linux",
@@ -58,8 +55,7 @@
       },
       "buildArgs": {
         "temurin": "--create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "x64Windows": {
       "os": "windows",
@@ -77,8 +73,7 @@
       },
       "buildArgs": {
         "temurin": "--jvm-variant client,server --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "x32Windows": {
       "os": "windows",
@@ -92,22 +87,19 @@
       },
       "buildArgs": {
         "temurin": "--jvm-variant client,server --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "ppc64Aix": {
       "os": "aix",
       "arch": "ppc64",
       "additionalNodeLabels": "xlc13&&aix720",
-      "additionalTestLabels": "sw.os.aix.7_2",
       "cleanWorkspaceAfterBuild": true,
       "configureArgs": {
         "temurin": "--disable-ccache"
       },
       "buildArgs": {
         "temurin": "--create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "s390xLinux": {
       "os": "linux",
@@ -119,8 +111,7 @@
       },
       "buildArgs": {
         "temurin": "--create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "sparcv9Solaris": {
       "os": "solaris",
@@ -131,8 +122,7 @@
       },
       "buildArgs": {
         "temurin": "--create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "ppc64leLinux": {
       "os": "linux",
@@ -144,8 +134,7 @@
       },
       "buildArgs": {
         "temurin": "--create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "aarch64Mac": {
       "os": "mac",
@@ -154,8 +143,7 @@
       "configureArgs": "--disable-ccache",
       "buildArgs": {
         "temurin": "--create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "arm32Linux": {
       "os": "linux",
@@ -169,17 +157,13 @@
       },
       "buildArgs": {
         "temurin": "--create-sbom"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "aarch64Linux": {
       "os": "linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/centos7_build_image",
       "additionalNodeLabels": {
-        "dragonwell": "armv8.2"
-      },
-      "additionalTestLabels": {
         "dragonwell": "armv8.2"
       },
       "configureArgs": {
@@ -191,8 +175,7 @@
       },
       "buildArgs": {
         "temurin": "--create-sbom --enable-sbom-strace"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "riscv64Linux": {
       "os": "linux",
@@ -219,8 +202,7 @@
         "temurin": "--enable-headless-only=yes --enable-dtrace --disable-ccache",
         "openj9": "--disable-ddr --openjdk-target=riscv64-unknown-linux-gnu --with-sysroot=/opt/fedora28_riscv_root",
         "bisheng": "--openjdk-target=riscv64-unknown-linux-gnu --with-sysroot=/opt/fedora28_riscv_root --with-jvm-features=shenandoahgc"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     },
     "aarch64Windows": {
       "os": "windows",
@@ -235,8 +217,7 @@
       },
       "buildArgs": {
         "temurin": "--jvm-variant client,server --create-sbom --cross-compile --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
-      },
-      "additionalSmokeTestNodeLabels": ""
+      }
     }
   },
   "targetConfigurations": [
