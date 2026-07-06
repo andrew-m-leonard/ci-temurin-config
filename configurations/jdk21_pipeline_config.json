@@ -18,6 +18,8 @@
       "os": "linux",
       "arch": "x64",
       "dockerImage": "adoptopenjdk/centos7_build_image",
+      "dockerArgs": "",
+      "podmanArgs": "",
       "dockerFile": {
         "openj9": "pipelines/build/dockerFiles/cuda.dockerfile"
       },
