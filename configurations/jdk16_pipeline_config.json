@@ -5,8 +5,8 @@
       "os": "mac",
       "arch": "x64",
       "additionalNodeLabels": "macos10.14",
-      "test": "default",
-      "configureArgs": "--enable-dtrace"
+      "configureArgs": "--enable-dtrace",
+      "additionalSmokeTestNodeLabels": ""
     },
     "x64Linux": {
       "os": "linux",
@@ -18,34 +18,34 @@
       "dockerFile": {
         "openj9": "pipelines/build/dockerFiles/cuda.dockerfile"
       },
-      "test": "default",
       "additionalTestLabels": {
         "openj9": "!(centos6||rhel6)"
       },
       "configureArgs": {
         "openj9": "--enable-dtrace --enable-jitserver",
         "hotspot": "--enable-dtrace"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "x64AlpineLinux": {
       "os": "alpine-linux",
       "arch": "x64",
       "dockerImage": "adoptopenjdk/alpine3_build_image",
-      "test": "default",
-      "configureArgs": "--enable-headless-only=yes"
+      "configureArgs": "--enable-headless-only=yes",
+      "additionalSmokeTestNodeLabels": ""
     },
     "aarch64AlpineLinux": {
       "os": "alpine-linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/alpine3_build_image",
-      "test": "default",
-      "configureArgs": "--enable-headless-only=yes"
+      "configureArgs": "--enable-headless-only=yes",
+      "additionalSmokeTestNodeLabels": ""
     },
     "x64Windows": {
       "os": "windows",
       "arch": "x64",
       "additionalNodeLabels": "win2012&&vs2017",
-      "test": "default"
+      "additionalSmokeTestNodeLabels": ""
     },
     "x32Windows": {
       "os": "windows",
@@ -54,7 +54,7 @@
       "buildArgs": {
         "hotspot": "--jvm-variant client,server"
       },
-      "test": "default"
+      "additionalSmokeTestNodeLabels": ""
     },
     "ppc64Aix": {
       "os": "aix",
@@ -63,38 +63,38 @@
         "hotspot": "xlc16&&aix710",
         "openj9": "xlc16&&aix715"
       },
-      "test": "default",
-      "cleanWorkspaceAfterBuild": true
+      "cleanWorkspaceAfterBuild": true,
+      "additionalSmokeTestNodeLabels": ""
     },
     "s390xLinux": {
       "os": "linux",
       "arch": "s390x",
-      "test": "default",
-      "configureArgs": "--enable-dtrace"
+      "configureArgs": "--enable-dtrace",
+      "additionalSmokeTestNodeLabels": ""
     },
     "ppc64leLinux": {
       "os": "linux",
       "arch": "ppc64le",
       "additionalNodeLabels": "centos7",
-      "test": "default",
       "configureArgs": {
         "hotspot": "--enable-dtrace",
         "openj9": "--enable-dtrace --enable-jitserver"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "aarch64Linux": {
       "os": "linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/centos7_build_image",
-      "test": "default",
       "configureArgs": "--enable-dtrace",
-      "testDynamic": false
+      "testDynamic": false,
+      "additionalSmokeTestNodeLabels": ""
     },
     "arm32Linux": {
       "os": "linux",
       "arch": "arm",
-      "test": "default",
-      "configureArgs": "--enable-dtrace"
+      "configureArgs": "--enable-dtrace",
+      "additionalSmokeTestNodeLabels": ""
     }
   },
   "targetConfigurations": [

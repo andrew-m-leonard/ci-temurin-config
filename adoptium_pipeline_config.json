@@ -68,7 +68,6 @@
   "defaultBuildArgs": "--create-jre-image --create-sbom",
   "defaultConfigureArgs": "",
   "defaultVariant": "temurin",
-  "defaultScmReference": "",
   "configFilePrefix": "configurations/",
   "configFileSuffix": "_pipeline_config.json",
   "repository": {

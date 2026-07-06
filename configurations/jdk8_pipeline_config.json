@@ -8,13 +8,13 @@
         "temurin": "xcode11.7",
         "openj9": "macos10.14"
       },
-      "test": "default",
       "configureArgs": {
         "temurin": "--disable-ccache"
       },
       "buildArgs": {
         "temurin": "--create-sbom"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "x64Linux": {
       "os": "linux",
@@ -24,60 +24,40 @@
         "openj9": "pipelines/build/dockerFiles/cuda.dockerfile",
         "dragonwell": "pipelines/build/dockerFiles/dragonwell.dockerfile"
       },
-      "test": {
-        "weekly": [
-          "sanity.openjdk",
-          "sanity.system",
-          "extended.system",
-          "sanity.perf",
-          "sanity.functional",
-          "extended.functional",
-          "extended.openjdk",
-          "extended.perf",
-          "special.functional",
-          "sanity.external",
-          "dev.openjdk",
-          "dev.functional"
-        ]
-      },
-      "additionalTestParams": {
-        "temurin": {
-          "CLOUD_PROVIDER": "azure"
-        }
-      },
       "configureArgs": {
         "dragonwell": "--enable-unlimited-crypto --with-jvm-variants=server  --with-zlib=system",
         "temurin": "--disable-ccache"
       },
       "buildArgs": {
         "temurin": "--create-source-archive --create-sbom --enable-sbom-strace"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "x64AlpineLinux": {
       "os": "alpine-linux",
       "arch": "x64",
       "dockerImage": "adoptopenjdk/alpine3_build_image",
-      "test": "default",
       "configureArgs": {
         "openj9": "--disable-headful",
         "temurin": "--disable-headful --disable-ccache"
       },
       "buildArgs": {
         "temurin": "--create-sbom --enable-sbom-strace"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "aarch64AlpineLinux": {
       "os": "alpine-linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/alpine3_build_image",
-      "test": "default",
       "configureArgs": {
         "openj9": "--disable-headful",
         "temurin": "--disable-headful --disable-ccache --with-jobs=4"
       },
       "buildArgs": {
         "temurin": "--create-sbom --enable-sbom-strace"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "x64Windows": {
       "os": "windows",
@@ -86,13 +66,13 @@
       "dockerRegistry": "https://adoptium.azurecr.io",
       "dockerCredential": "bbb9fa70-a1de-4853-b564-5f02193329ac",
       "additionalNodeLabels": "win2022&&vs2022",
-      "test": "default",
       "configureArgs": {
         "temurin": "--disable-ccache"
       },
       "buildArgs": {
         "temurin": "--create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "x32Windows": {
       "os": "windows",
@@ -107,13 +87,12 @@
       "buildArgs": {
         "temurin": "--jvm-variant client,server --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       },
-      "test": "default"
+      "additionalSmokeTestNodeLabels": ""
     },
     "ppc64Aix": {
       "os": "aix",
       "arch": "ppc64",
       "additionalNodeLabels": "xlc13&&aix720",
-      "test": "default",
       "additionalTestLabels": "sw.os.aix.7_2",
       "cleanWorkspaceAfterBuild": true,
       "configureArgs": {
@@ -121,58 +100,54 @@
       },
       "buildArgs": {
         "temurin": "--create-sbom"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "s390xLinux": {
       "os": "linux",
       "arch": "s390x",
-      "test": {
-        "temurin": [
-          "sanity.openjdk"
-        ],
-        "openj9": "default"
-      },
       "dockerImage": "rhel7_build_image",
       "configureArgs": {
         "temurin": "--disable-ccache"
       },
       "buildArgs": {
         "temurin": "--create-sbom --enable-sbom-strace"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "sparcv9Solaris": {
       "os": "solaris",
       "arch": "sparcv9",
-      "test": "default",
       "configureArgs": {
         "temurin": "--disable-ccache"
       },
       "buildArgs": {
         "temurin": "--create-sbom"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "x64Solaris": {
       "os": "solaris",
       "arch": "x64",
-      "test": "default",
       "configureArgs": {
         "temurin": "--disable-ccache"
       },
       "buildArgs": {
         "temurin": "--create-sbom"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "ppc64leLinux": {
       "os": "linux",
       "arch": "ppc64le",
       "dockerImage": "adoptopenjdk/centos7_build_image",
-      "test": "default",
       "configureArgs": {
         "temurin": "--disable-ccache"
       },
       "buildArgs": {
         "temurin": "--create-sbom --enable-sbom-strace"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "arm32Linux": {
       "os": "linux",
@@ -180,13 +155,13 @@
       "crossCompile": "aarch64",
       "dockerImage": "adoptopenjdk/ubuntu1604_build_image",
       "dockerArgs": "--platform linux/arm/v7",
-      "test": "default",
       "configureArgs": {
         "temurin": "--disable-ccache --with-jobs=4"
       },
       "buildArgs": {
         "temurin": "--create-sbom --enable-sbom-strace"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     },
     "aarch64Linux": {
       "os": "linux",
@@ -195,13 +170,13 @@
       "dockerFile": {
         "dragonwell": "pipelines/build/dockerFiles/dragonwell_aarch64.dockerfile"
       },
-      "test": "default",
       "configureArgs": {
         "temurin": "--disable-ccache --with-jobs=4"
       },
       "buildArgs": {
         "temurin": "--create-sbom --enable-sbom-strace"
-      }
+      },
+      "additionalSmokeTestNodeLabels": ""
     }
   },
   "targetConfigurations": [

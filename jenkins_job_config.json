@@ -5,11 +5,11 @@
     "defaultParameters": {
       "VARIANT": "temurin",
       "CLEAN_WORKSPACE_AFTER_STAGE": true,
-      "RUN_TESTS": false,
-      "ENABLE_INSTALLERS": false,
-      "SIGN_ARTIFACTS": false,
+      "RUN_TESTS": true,
+      "ENABLE_INSTALLERS": true,
+      "SIGN_ARTIFACTS": true,
       "PUBLISH_ARTIFACTS": false,
-      "RUN_REPRODUCIBLE_COMPARE": true
+      "RUN_REPRODUCIBLE_COMPARE": false
     },
     "logRotation": {
       "daysToKeep": 30,
