@@ -19,21 +19,21 @@
     }
   },
   "stageAgentLabels": {
-    "Initialize": "worker",
-    "Build": "build&&{os}&&{arch}",
+    "Initialize": "ci.role.worker",
+    "Build": "ci.role.build&&sw.os.{os}&&hw.arch.{arch}",
     "Internal Code Sign": "eclipse-codesign",
-    "Assemble Images": "build&&{os}&&{arch}",
-    "Post-Build Code Sign": "worker",
-    "Build Installers": "build&&{os}&&{arch}",
-    "Code Sign Installer": "worker",
-    "SBOM Sign": "worker",
-    "Digital Artifact Sign": "worker",
-    "Verify Signing": "worker",
-    "Validate SBOM": "build&&{os}&&{arch}",
-    "Smoke Tests": "build&&{os}&&{arch}",
-    "Reproducible Compare Build": "build&&{os}&&{arch}",
-    "AQA Tests": "build&&{arch}",
-    "TCK Tests": "build&&{arch}",
-    "Publish Artifacts": "worker"
+    "Assemble Images": "ci.role.build&&sw.os.{os}&&hw.arch.{arch}",
+    "Post-Build Code Sign": "ci.role.worker",
+    "Build Installers": "ci.role.build&&sw.os.{os}&&hw.arch.{arch}",
+    "Code Sign Installer": "ci.role.worker",
+    "SBOM Sign": "ci.role.worker",
+    "Digital Artifact Sign": "ci.role.worker",
+    "Verify Signing": "ci.role.worker",
+    "Validate SBOM": "ci.role.build&&sw.os.{os}&&hw.arch.{arch}",
+    "Smoke Tests": "ci.role.build&&sw.os.{os}&&hw.arch.{arch}",
+    "Reproducible Compare Build": "ci.role.build&&sw.os.{os}&&hw.arch.{arch}",
+    "AQA Tests": "ci.role.build&&hw.arch.{arch}",
+    "TCK Tests": "ci.role.build&&hw.arch.{arch}",
+    "Publish Artifacts": "ci.role.worker"
   }
 }

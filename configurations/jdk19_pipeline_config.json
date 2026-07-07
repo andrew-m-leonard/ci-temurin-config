@@ -4,7 +4,7 @@
     "x64Mac": {
       "os": "mac",
       "arch": "x64",
-      "additionalNodeLabels": "macos10.14",
+      "additionalNodeLabels": "sw.os.mac.10_14",
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
@@ -49,7 +49,7 @@
     "x64Windows": {
       "os": "windows",
       "arch": "x64",
-      "additionalNodeLabels": "win2012&&vs2019",
+      "additionalNodeLabels": "sw.os.windows.2012&&sw.tool.vs.2019",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
       }
@@ -57,7 +57,7 @@
     "x32Windows": {
       "os": "windows",
       "arch": "x86-32",
-      "additionalNodeLabels": "win2012&&vs2019",
+      "additionalNodeLabels": "sw.os.windows.2012&&sw.tool.vs.2019",
       "buildArgs": {
         "temurin": "--jvm-variant client,server --create-jre-image --create-sbom"
       }
@@ -66,8 +66,8 @@
       "os": "aix",
       "arch": "ppc64",
       "additionalNodeLabels": {
-        "temurin": "xlc16&&aix720",
-        "openj9": "xlc16&&aix715"
+        "temurin": "sw.tool.xlc.16&&sw.os.aix.7_2",
+        "openj9": "sw.tool.xlc.16&&sw.os.aix.7_1"
       },
       "cleanWorkspaceAfterBuild": true,
       "buildArgs": {
@@ -106,7 +106,7 @@
     "aarch64Mac": {
       "os": "mac",
       "arch": "aarch64",
-      "additionalNodeLabels": "macos11",
+      "additionalNodeLabels": "sw.os.mac.11",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
       }
@@ -137,7 +137,7 @@
       "os": "windows",
       "arch": "aarch64",
       "crossCompile": "x64",
-      "additionalNodeLabels": "win2022&&vs2019",
+      "additionalNodeLabels": "sw.os.windows.2022&&sw.tool.vs.2019",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --cross-compile"
       }

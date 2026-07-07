@@ -4,13 +4,13 @@
     "x64Mac": {
       "os": "mac",
       "arch": "x64",
-      "additionalNodeLabels": "macos10.14",
+      "additionalNodeLabels": "sw.os.mac.10_14",
       "configureArgs": "--enable-dtrace"
     },
     "x64MacXL": {
       "os": "mac",
       "arch": "x64",
-      "additionalNodeLabels": "macos10.14",
+      "additionalNodeLabels": "sw.os.mac.10_14",
       "additionalFileNameTag": "macosXL",
       "configureArgs": "--with-noncompressedrefs --enable-dtrace"
     },
@@ -42,19 +42,19 @@
     "x64Windows": {
       "os": "windows",
       "arch": "x64",
-      "additionalNodeLabels": "win2012&&vs2017"
+      "additionalNodeLabels": "sw.os.windows.2012&&sw.tool.vs.2017"
     },
     "x64WindowsXL": {
       "os": "windows",
       "arch": "x64",
-      "additionalNodeLabels": "win2012&&vs2017",
+      "additionalNodeLabels": "sw.os.windows.2012&&sw.tool.vs.2017",
       "additionalFileNameTag": "windowsXL",
       "configureArgs": "--with-noncompressedrefs"
     },
     "x32Windows": {
       "os": "windows",
       "arch": "x86-32",
-      "additionalNodeLabels": "win2012&&vs2017",
+      "additionalNodeLabels": "sw.os.windows.2012&&sw.tool.vs.2017",
       "buildArgs": {
         "hotspot": "--jvm-variant client,server"
       }
@@ -63,8 +63,8 @@
       "os": "aix",
       "arch": "ppc64",
       "additionalNodeLabels": {
-        "hotspot": "xlc16&&aix710",
-        "openj9": "xlc16&&aix715"
+        "hotspot": "sw.tool.xlc.16&&sw.os.aix.7_1",
+        "openj9": "sw.tool.xlc.16&&sw.os.aix.7_1"
       }
     },
     "s390xLinux": {
@@ -81,7 +81,7 @@
     "ppc64leLinux": {
       "os": "linux",
       "arch": "ppc64le",
-      "additionalNodeLabels": "centos7",
+      "additionalNodeLabels": "sw.os.centos.7",
       "configureArgs": {
         "hotspot": "--enable-dtrace",
         "openj9": "--enable-dtrace --enable-jitserver"
@@ -90,7 +90,7 @@
     "ppc64leLinuxXL": {
       "os": "linux",
       "arch": "ppc64le",
-      "additionalNodeLabels": "centos7",
+      "additionalNodeLabels": "sw.os.centos.7",
       "additionalFileNameTag": "linuxXL",
       "configureArgs": "--with-noncompressedrefs --disable-ccache --enable-dtrace"
     },

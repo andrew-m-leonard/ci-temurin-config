@@ -4,7 +4,7 @@
     "x64Mac": {
       "os": "mac",
       "arch": "x64",
-      "additionalNodeLabels": "xcode15.0.1",
+      "additionalNodeLabels": "sw.tool.xcode.15_0_1",
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
@@ -49,7 +49,7 @@
     "x64Windows": {
       "os": "windows",
       "arch": "x64",
-      "additionalNodeLabels": "win2022&&vs2022",
+      "additionalNodeLabels": "sw.os.windows.2022&&sw.tool.vs.2022",
       "configureArgs": "--with-ucrt-dll-dir='C:/progra~2/wi3cf2~1/10/Redist/10.0.22621.0/ucrt/DLLs/x64'",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
@@ -59,8 +59,8 @@
       "os": "aix",
       "arch": "ppc64",
       "additionalNodeLabels": {
-        "temurin": "openxl17&&aix720",
-        "openj9": "xlc16&&aix715"
+        "temurin": "sw.tool.openxl.17&&sw.os.aix.7_2",
+        "openj9": "sw.tool.xlc.16&&sw.os.aix.7_1"
       },
       "cleanWorkspaceAfterBuild": true,
       "buildArgs": {
@@ -101,7 +101,7 @@
     "aarch64Mac": {
       "os": "mac",
       "arch": "aarch64",
-      "additionalNodeLabels": "xcode15.0.1",
+      "additionalNodeLabels": "sw.tool.xcode.15_0_1",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom"
       }
@@ -121,7 +121,7 @@
       "os": "windows",
       "arch": "aarch64",
       "crossCompile": "x64",
-      "additionalNodeLabels": "win2022&&vs2022",
+      "additionalNodeLabels": "sw.os.windows.2022&&sw.tool.vs.2022",
       "buildArgs": {
         "temurin": "--create-jre-image --create-sbom --cross-compile"
       }

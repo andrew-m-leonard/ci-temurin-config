@@ -4,7 +4,7 @@
     "x64Mac": {
       "os": "mac",
       "arch": "x64",
-      "additionalNodeLabels": "xcode15.0.1",
+      "additionalNodeLabels": "sw.tool.xcode.15_0_1",
       "configureArgs": {
         "openj9": "--enable-dtrace=auto --with-cmake",
         "temurin": "--enable-dtrace=auto --disable-ccache"
@@ -64,9 +64,9 @@
       "dockerRegistry": "https://adoptium.azurecr.io",
       "dockerCredential": "bbb9fa70-a1de-4853-b564-5f02193329ac",
       "additionalNodeLabels": {
-        "temurin": "win2022&&vs2022",
-        "openj9": "win2012&&vs2017",
-        "dragonwell": "win2012"
+        "temurin": "sw.os.windows.2022&&sw.tool.vs.2022",
+        "openj9": "sw.os.windows.2012&&sw.tool.vs.2017",
+        "dragonwell": "sw.os.windows.2012"
       },
       "configureArgs": {
         "temurin": "--disable-ccache"
@@ -81,7 +81,7 @@
       "dockerImage": "windows2022_build_image@sha256:0d0a3afb998c34df0277d6a5ed97c2d8d705012e6a93d358af25af638963ef6f",
       "dockerRegistry": "https://adoptium.azurecr.io",
       "dockerCredential": "bbb9fa70-a1de-4853-b564-5f02193329ac",
-      "additionalNodeLabels": "win2022&&vs2022",
+      "additionalNodeLabels": "sw.os.windows.2022&&sw.tool.vs.2022",
       "configureArgs": {
         "temurin": "--disable-ccache"
       },
@@ -92,7 +92,7 @@
     "ppc64Aix": {
       "os": "aix",
       "arch": "ppc64",
-      "additionalNodeLabels": "xlc13&&aix720",
+      "additionalNodeLabels": "sw.tool.xlc.13&&sw.os.aix.7_2",
       "cleanWorkspaceAfterBuild": true,
       "configureArgs": {
         "temurin": "--disable-ccache"
@@ -139,7 +139,7 @@
     "aarch64Mac": {
       "os": "mac",
       "arch": "aarch64",
-      "additionalNodeLabels": "xcode15.0.1",
+      "additionalNodeLabels": "sw.tool.xcode.15_0_1",
       "configureArgs": "--disable-ccache",
       "buildArgs": {
         "temurin": "--create-sbom"
@@ -164,7 +164,7 @@
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/centos7_build_image",
       "additionalNodeLabels": {
-        "dragonwell": "armv8.2"
+        "dragonwell": "sw.tool.arm.8_2"
       },
       "configureArgs": {
         "temurin": "--enable-dtrace=auto --disable-ccache --with-jobs=4",
@@ -211,7 +211,7 @@
       "dockerRegistry": "https://adoptium.azurecr.io",
       "dockerCredential": "bbb9fa70-a1de-4853-b564-5f02193329ac",
       "crossCompile": "x64",
-      "additionalNodeLabels": "win2022&&vs2022",
+      "additionalNodeLabels": "sw.os.windows.2022&&sw.tool.vs.2022",
       "configureArgs": {
         "temurin": "--disable-ccache"
       },
