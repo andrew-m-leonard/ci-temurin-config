@@ -1,7 +1,7 @@
 {
   "version": "jdk18",
   "buildConfigurations": {
-    "x64Mac": {
+    "x86-64_mac": {
       "os": "mac",
       "arch": "x64",
       "additionalNodeLabels": "sw.os.mac.10_14",
@@ -10,7 +10,7 @@
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-    "x64Linux": {
+    "x86-64_linux": {
       "os": "linux",
       "arch": "x64",
       "dockerImage": {
@@ -28,7 +28,7 @@
         "temurin": "--create-source-archive --create-jre-image --create-sbom"
       }
     },
-    "x64AlpineLinux": {
+    "x86-64_alpine-linux": {
       "os": "alpine-linux",
       "arch": "x64",
       "dockerImage": "adoptopenjdk/alpine3_build_image",
@@ -37,7 +37,7 @@
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-    "aarch64AlpineLinux": {
+    "aarch64_alpine-linux": {
       "os": "alpine-linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/alpine3_build_image",
@@ -46,7 +46,7 @@
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-    "x64Windows": {
+    "x86-64_windows": {
       "os": "windows",
       "arch": "x64",
       "additionalNodeLabels": "sw.os.windows.2012&&sw.tool.vs.2019",
@@ -54,7 +54,7 @@
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-    "x32Windows": {
+    "x86-32_windows": {
       "os": "windows",
       "arch": "x86-32",
       "additionalNodeLabels": "sw.os.windows.2012&&sw.tool.vs.2019",
@@ -62,7 +62,7 @@
         "temurin": "--jvm-variant client,server --create-jre-image --create-sbom"
       }
     },
-    "ppc64Aix": {
+    "ppc64_aix": {
       "os": "aix",
       "arch": "ppc64",
       "additionalNodeLabels": {
@@ -74,7 +74,7 @@
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-    "s390xLinux": {
+    "s390x_linux": {
       "os": "linux",
       "arch": "s390x",
       "configureArgs": "--enable-dtrace",
@@ -82,7 +82,7 @@
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-    "ppc64leLinux": {
+    "ppc64le_linux": {
       "os": "linux",
       "arch": "ppc64le",
       "additionalNodeLabels": "sw.os.centos.7",
@@ -94,7 +94,7 @@
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-    "aarch64Linux": {
+    "aarch64_linux": {
       "os": "linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/centos7_build_image",
@@ -104,7 +104,7 @@
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-    "aarch64Mac": {
+    "aarch64_mac": {
       "os": "mac",
       "arch": "aarch64",
       "additionalNodeLabels": "sw.os.mac.11",
@@ -112,7 +112,7 @@
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-    "arm32Linux": {
+    "arm_linux": {
       "os": "linux",
       "arch": "arm",
       "crossCompile": "aarch64",
@@ -125,18 +125,18 @@
     }
   },
   "targetConfigurations": [
-    "x64Mac",
-    "x64Linux",
-    "x64AlpineLinux",
-    "aarch64AlpineLinux",
-    "x64Windows",
-    "x32Windows",
-    "ppc64Aix",
-    "s390xLinux",
-    "ppc64leLinux",
-    "aarch64Linux",
-    "aarch64Mac",
-    "arm32Linux"
+    "x86-64_mac",
+    "x86-64_linux",
+    "x86-64_alpine-linux",
+    "aarch64_alpine-linux",
+    "x86-64_windows",
+    "x86-32_windows",
+    "ppc64_aix",
+    "s390x_linux",
+    "ppc64le_linux",
+    "aarch64_linux",
+    "aarch64_mac",
+    "arm_linux"
   ],
   "openjdkVersion": "jdk18u",
   "enabled": false

@@ -1,7 +1,7 @@
 {
   "version": "jdk17",
   "buildConfigurations": {
-    "x64Mac": {
+    "x86-64_mac": {
       "os": "mac",
       "arch": "x64",
       "additionalNodeLabels": "sw.tool.xcode.15_0_1",
@@ -10,7 +10,7 @@
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-    "x64Linux": {
+    "x86-64_linux": {
       "os": "linux",
       "arch": "x64",
       "dockerImage": {
@@ -28,7 +28,7 @@
         "temurin": "--create-source-archive --create-jre-image --create-sbom --enable-sbom-strace"
       }
     },
-    "x64AlpineLinux": {
+    "x86-64_alpine-linux": {
       "os": "alpine-linux",
       "arch": "x64",
       "dockerImage": "adoptopenjdk/alpine3_build_image",
@@ -37,7 +37,7 @@
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
       }
     },
-    "aarch64AlpineLinux": {
+    "aarch64_alpine-linux": {
       "os": "alpine-linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/alpine3_build_image",
@@ -49,7 +49,7 @@
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
       }
     },
-    "x64Windows": {
+    "x86-64_windows": {
       "os": "windows",
       "arch": "x64",
       "dockerImage": "windows2022_build_image",
@@ -60,7 +60,7 @@
         "temurin": "--create-jre-image --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     },
-    "x32Windows": {
+    "x86-32_windows": {
       "os": "windows",
       "arch": "x86-32",
       "dockerImage": "windows2022_build_image",
@@ -71,7 +71,7 @@
         "temurin": "--jvm-variant client,server --create-jre-image --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     },
-    "ppc64Aix": {
+    "ppc64_aix": {
       "os": "aix",
       "arch": "ppc64",
       "additionalNodeLabels": "sw.tool.xlc.13&&sw.os.aix.7_2",
@@ -80,7 +80,7 @@
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-    "s390xLinux": {
+    "s390x_linux": {
       "os": "linux",
       "arch": "s390x",
       "dockerImage": "rhel7_build_image",
@@ -89,7 +89,7 @@
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
       }
     },
-    "ppc64leLinux": {
+    "ppc64le_linux": {
       "os": "linux",
       "arch": "ppc64le",
       "dockerImage": "adoptopenjdk/centos7_build_image",
@@ -97,7 +97,7 @@
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
       }
     },
-    "aarch64Linux": {
+    "aarch64_linux": {
       "os": "linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/centos7_build_image",
@@ -109,7 +109,7 @@
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
       }
     },
-    "aarch64Mac": {
+    "aarch64_mac": {
       "os": "mac",
       "arch": "aarch64",
       "additionalNodeLabels": "sw.tool.xcode.15_0_1",
@@ -117,7 +117,7 @@
         "temurin": "--create-jre-image --create-sbom"
       }
     },
-    "arm32Linux": {
+    "arm_linux": {
       "os": "linux",
       "arch": "arm",
       "crossCompile": "aarch64",
@@ -131,7 +131,7 @@
         "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
       }
     },
-    "riscv64Linux": {
+    "riscv64_linux": {
       "os": "linux",
       "arch": "riscv64",
       "crossCompile": "qemustatic",
@@ -142,7 +142,7 @@
         "temurin": "--create-jre-image --create-sbom --use-adoptium-devkit gcc-14.2.0-Fedora_28-b00"
       }
     },
-    "aarch64Windows": {
+    "aarch64_windows": {
       "os": "windows",
       "arch": "aarch64",
       "dockerImage": "windows2022_build_image",
@@ -156,20 +156,20 @@
     }
   },
   "targetConfigurations": [
-    "x64Mac",
-    "x64Linux",
-    "x64AlpineLinux",
-    "aarch64AlpineLinux",
-    "x64Windows",
-    "x32Windows",
-    "ppc64Aix",
-    "s390xLinux",
-    "ppc64leLinux",
-    "aarch64Linux",
-    "aarch64Mac",
-    "arm32Linux",
-    "riscv64Linux",
-    "aarch64Windows"
+    "x86-64_mac",
+    "x86-64_linux",
+    "x86-64_alpine-linux",
+    "aarch64_alpine-linux",
+    "x86-64_windows",
+    "x86-32_windows",
+    "ppc64_aix",
+    "s390x_linux",
+    "ppc64le_linux",
+    "aarch64_linux",
+    "aarch64_mac",
+    "arm_linux",
+    "riscv64_linux",
+    "aarch64_windows"
   ],
   "openjdkVersion": "jdk17u",
   "enabled": true

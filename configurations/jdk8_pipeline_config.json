@@ -1,7 +1,7 @@
 {
   "version": "jdk8",
   "buildConfigurations": {
-    "x64Mac": {
+    "x86-64_mac": {
       "os": "mac",
       "arch": "x64",
       "additionalNodeLabels": {
@@ -15,7 +15,7 @@
         "temurin": "--create-sbom"
       }
     },
-    "x64Linux": {
+    "x86-64_linux": {
       "os": "linux",
       "arch": "x64",
       "dockerImage": "adoptopenjdk/centos6_build_image",
@@ -31,7 +31,7 @@
         "temurin": "--create-source-archive --create-sbom --enable-sbom-strace"
       }
     },
-    "x64AlpineLinux": {
+    "x86-64_alpine-linux": {
       "os": "alpine-linux",
       "arch": "x64",
       "dockerImage": "adoptopenjdk/alpine3_build_image",
@@ -43,7 +43,7 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-    "aarch64AlpineLinux": {
+    "aarch64_alpine-linux": {
       "os": "alpine-linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/alpine3_build_image",
@@ -55,7 +55,7 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-    "x64Windows": {
+    "x86-64_windows": {
       "os": "windows",
       "arch": "x64",
       "dockerImage": "windows2022_build_image@sha256:0d0a3afb998c34df0277d6a5ed97c2d8d705012e6a93d358af25af638963ef6f",
@@ -69,7 +69,7 @@
         "temurin": "--create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     },
-    "x32Windows": {
+    "x86-32_windows": {
       "os": "windows",
       "arch": "x86-32",
       "dockerImage": "windows2022_build_image@sha256:0d0a3afb998c34df0277d6a5ed97c2d8d705012e6a93d358af25af638963ef6f",
@@ -83,7 +83,7 @@
         "temurin": "--jvm-variant client,server --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     },
-    "ppc64Aix": {
+    "ppc64_aix": {
       "os": "aix",
       "arch": "ppc64",
       "additionalNodeLabels": "sw.tool.xlc.13&&sw.os.aix.7_2",
@@ -95,7 +95,7 @@
         "temurin": "--create-sbom"
       }
     },
-    "s390xLinux": {
+    "s390x_linux": {
       "os": "linux",
       "arch": "s390x",
       "dockerImage": "rhel7_build_image",
@@ -106,7 +106,7 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-    "sparcv9Solaris": {
+    "sparcv9_solaris": {
       "os": "solaris",
       "arch": "sparcv9",
       "configureArgs": {
@@ -116,7 +116,7 @@
         "temurin": "--create-sbom"
       }
     },
-    "x64Solaris": {
+    "x86-64_solaris": {
       "os": "solaris",
       "arch": "x64",
       "configureArgs": {
@@ -126,7 +126,7 @@
         "temurin": "--create-sbom"
       }
     },
-    "ppc64leLinux": {
+    "ppc64le_linux": {
       "os": "linux",
       "arch": "ppc64le",
       "dockerImage": "adoptopenjdk/centos7_build_image",
@@ -137,7 +137,7 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-    "arm32Linux": {
+    "arm_linux": {
       "os": "linux",
       "arch": "arm",
       "crossCompile": "aarch64",
@@ -150,7 +150,7 @@
         "temurin": "--create-sbom --enable-sbom-strace"
       }
     },
-    "aarch64Linux": {
+    "aarch64_linux": {
       "os": "linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/centos7_build_image",
@@ -166,19 +166,19 @@
     }
   },
   "targetConfigurations": [
-    "x64Mac",
-    "x64Linux",
-    "x64AlpineLinux",
-    "aarch64AlpineLinux",
-    "x64Windows",
-    "x32Windows",
-    "ppc64Aix",
-    "s390xLinux",
-    "sparcv9Solaris",
-    "x64Solaris",
-    "ppc64leLinux",
-    "arm32Linux",
-    "aarch64Linux"
+    "x86-64_mac",
+    "x86-64_linux",
+    "x86-64_alpine-linux",
+    "aarch64_alpine-linux",
+    "x86-64_windows",
+    "x86-32_windows",
+    "ppc64_aix",
+    "s390x_linux",
+    "sparcv9_solaris",
+    "x86-64_solaris",
+    "ppc64le_linux",
+    "arm_linux",
+    "aarch64_linux"
   ],
   "openjdkVersion": "jdk8u",
   "enabled": true

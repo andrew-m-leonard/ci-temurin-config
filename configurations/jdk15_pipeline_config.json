@@ -1,7 +1,7 @@
 {
   "version": "jdk15",
   "buildConfigurations": {
-    "x64Mac": {
+    "x86-64_mac": {
       "os": "mac",
       "arch": "x64",
       "additionalNodeLabels": "sw.os.mac.10_14",
@@ -14,7 +14,7 @@
       "additionalFileNameTag": "macosXL",
       "configureArgs": "--with-noncompressedrefs --enable-dtrace"
     },
-    "x64Linux": {
+    "x86-64_linux": {
       "os": "linux",
       "arch": "x64",
       "dockerImage": {
@@ -39,7 +39,7 @@
       "additionalFileNameTag": "linuxXL",
       "configureArgs": "--with-noncompressedrefs --enable-dtrace --enable-jitserver"
     },
-    "x64Windows": {
+    "x86-64_windows": {
       "os": "windows",
       "arch": "x64",
       "additionalNodeLabels": "sw.os.windows.2012&&sw.tool.vs.2017"
@@ -51,7 +51,7 @@
       "additionalFileNameTag": "windowsXL",
       "configureArgs": "--with-noncompressedrefs"
     },
-    "x32Windows": {
+    "x86-32_windows": {
       "os": "windows",
       "arch": "x86-32",
       "additionalNodeLabels": "sw.os.windows.2012&&sw.tool.vs.2017",
@@ -59,7 +59,7 @@
         "hotspot": "--jvm-variant client,server"
       }
     },
-    "ppc64Aix": {
+    "ppc64_aix": {
       "os": "aix",
       "arch": "ppc64",
       "additionalNodeLabels": {
@@ -67,7 +67,7 @@
         "openj9": "sw.tool.xlc.16&&sw.os.aix.7_1"
       }
     },
-    "s390xLinux": {
+    "s390x_linux": {
       "os": "linux",
       "arch": "s390x",
       "configureArgs": "--enable-dtrace"
@@ -78,7 +78,7 @@
       "additionalFileNameTag": "linuxXL",
       "configureArgs": "--with-noncompressedrefs --enable-dtrace"
     },
-    "ppc64leLinux": {
+    "ppc64le_linux": {
       "os": "linux",
       "arch": "ppc64le",
       "additionalNodeLabels": "sw.os.centos.7",
@@ -94,12 +94,12 @@
       "additionalFileNameTag": "linuxXL",
       "configureArgs": "--with-noncompressedrefs --disable-ccache --enable-dtrace"
     },
-    "arm32Linux": {
+    "arm_linux": {
       "os": "linux",
       "arch": "arm",
       "configureArgs": "--enable-dtrace"
     },
-    "aarch64Linux": {
+    "aarch64_linux": {
       "os": "linux",
       "arch": "aarch64",
       "dockerImage": "adoptopenjdk/centos7_build_image",
@@ -114,20 +114,20 @@
     }
   },
   "targetConfigurations": [
-    "x64Mac",
+    "x86-64_mac",
     "x64MacXL",
-    "x64Linux",
+    "x86-64_linux",
     "x64LinuxXL",
-    "x64Windows",
+    "x86-64_windows",
     "x64WindowsXL",
-    "x32Windows",
-    "ppc64Aix",
-    "s390xLinux",
+    "x86-32_windows",
+    "ppc64_aix",
+    "s390x_linux",
     "s390xLinuxXL",
-    "ppc64leLinux",
+    "ppc64le_linux",
     "ppc64leLinuxXL",
-    "arm32Linux",
-    "aarch64Linux",
+    "arm_linux",
+    "aarch64_linux",
     "aarch64LinuxXL"
   ],
   "openjdkVersion": "jdk15u",
