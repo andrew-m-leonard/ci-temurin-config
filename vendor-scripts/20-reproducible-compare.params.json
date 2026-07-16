@@ -1,0 +1,5 @@
+{
+  "stageId": "20-reproducible-compare",
+  "description": "Temurin reproducible build comparison stage. All required values (BUILD_REPO_URL, BUILD_REF, SCM_REF) are resolved from adoptium_pipeline_config.json and the pipeline environment — no additional job parameters are needed for the Temurin implementation.",
+  "parameterGroups": []
+}

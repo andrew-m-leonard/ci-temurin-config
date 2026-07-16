@@ -1,0 +1,24 @@
+{
+  "stageId": "12-validate-sbom",
+  "description": "Temurin SBOM validation stage parameters. This stage clones temurin-build and delegates to tooling/validateSBOM.sh.",
+  "parameterGroups": [
+    {
+      "name": "SBOM Validation Options",
+      "description": "Controls which temurin-build revision is used to obtain the validateSBOM.sh tool. Defaults to the same repository and branch used by the build stage.",
+      "parameters": [
+        {
+          "name": "TEMURIN_BUILD_REPO",
+          "type": "string",
+          "default": "",
+          "description": "temurin-build repository URL used to obtain validateSBOM.sh. Empty = uses the script default (https://github.com/adoptium/temurin-build.git)."
+        },
+        {
+          "name": "TEMURIN_BUILD_BRANCH",
+          "type": "string",
+          "default": "",
+          "description": "temurin-build branch used to obtain validateSBOM.sh. Empty = uses the script default (master)."
+        }
+      ]
+    }
+  ]
+}
