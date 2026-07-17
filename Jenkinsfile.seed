@@ -55,7 +55,7 @@ def PIPELINES_REPO_BRANCH = 'main'
 // ---------------------------------------------------------------------------
 
 pipeline {
-    agent any
+    agent { label 'ci.role.worker' }
 
     options {
         timestamps()
