@@ -23,7 +23,9 @@
  *      - Branch         : <your config repo branch, e.g. main>
  *      - Script Path    : Jenkinsfile.seed   (or wherever you placed this file)
  *
- * 4. Add two String parameters to the seed job:
+ * 4. In the Jenkins job configuration UI, click "This project is parameterized"
+ *    and add two String Parameters (do NOT declare them in this Jenkinsfile —
+ *    Jenkins overwrites Jenkinsfile defaults on every run):
  *      CONFIG_REPO_URL    — URL of this vendor config repository
  *      CONFIG_REPO_BRANCH — Branch of this vendor config repository (e.g. main)
  *
@@ -57,18 +59,10 @@ def PIPELINES_REPO_BRANCH = 'main'
 pipeline {
     agent { label 'ci.role.worker' }
 
-    parameters {
-        string(
-            name:         'CONFIG_REPO_URL',
-            defaultValue: '',
-            description:  'URL of this vendor config repository — used by generated launch jobs to check out the config repo at runtime (REQUIRED)'
-        )
-        string(
-            name:         'CONFIG_REPO_BRANCH',
-            defaultValue: 'main',
-            description:  'Branch of this vendor config repository'
-        )
-    }
+    // NOTE: Do NOT declare CONFIG_REPO_URL / CONFIG_REPO_BRANCH here.
+    // A parameters{} block in the Jenkinsfile causes Jenkins to reset parameter
+    // values to the Jenkinsfile defaults on every run, wiping the operator's values.
+    // Define these two String Parameters in the Jenkins job configuration UI instead.
 
     options {
         timestamps()
@@ -91,22 +85,36 @@ pipeline {
 
         stage('Generate jobs') {
             steps {
-                // Run the consolidated Job DSL script.
-                // All configuration is read from the workspace:
-                //   adoptium_pipeline_config.json, jenkins_job_config.json,
-                //   configurations/, vendor-scripts/ (config repo, workspace root)
-                //   pipelines/scripts/stages/ (default *.params.json)
-                jobDsl(
-                    targets:              'pipelines/ci/jenkins/job-dsl/seed/seed_job_consolidated.groovy',
-                    removedJobAction:     'DELETE',
-                    removedViewAction:    'DELETE',
-                    additionalClasspath:  'pipelines/ci/jenkins/job-dsl',
-                    additionalParameters: [
-                        WORKSPACE:          env.WORKSPACE,
-                        CONFIG_REPO_URL:    params.CONFIG_REPO_URL,
-                        CONFIG_REPO_BRANCH: params.CONFIG_REPO_BRANCH
-                    ]
-                )
+                script {
+                    // Pre-compute stem lists here using shell — readFileFromWorkspace
+                    // in the DSL script handles file reading, but directory listing
+                    // is most reliably done with a shell glob before jobDsl() runs.
+                    def paramStemsRaw = sh(
+                        script: "ls pipelines/scripts/stages/*.params.json 2>/dev/null | xargs -n1 basename | sed 's/.params.json//' | sort | tr '\\n' ',' | sed 's/,\$//'",
+                        returnStdout: true
+                    ).trim()
+                    def vendorStemsRaw = sh(
+                        script: "ls vendor-scripts/*.params.json 2>/dev/null | xargs -n1 basename | sed 's/.params.json//' | sort | tr '\\n' ',' | sed 's/,\$//' || true",
+                        returnStdout: true
+                    ).trim()
+
+                    if (!paramStemsRaw) {
+                        error("No *.params.json files found under pipelines/scripts/stages/ — ensure the pipeline repo checkout succeeded.")
+                    }
+
+                    jobDsl(
+                        targets:              'pipelines/ci/jenkins/job-dsl/seed/seed_job_consolidated.groovy',
+                        removedJobAction:     'DELETE',
+                        removedViewAction:    'DELETE',
+                        additionalClasspath:  'pipelines/ci/jenkins/job-dsl',
+                        additionalParameters: [
+                            CONFIG_REPO_URL:    params.CONFIG_REPO_URL,
+                            CONFIG_REPO_BRANCH: params.CONFIG_REPO_BRANCH,
+                            PARAM_STEMS:        paramStemsRaw,
+                            VENDOR_STEMS:       vendorStemsRaw
+                        ]
+                    )
+                }
             }
         }
     }
