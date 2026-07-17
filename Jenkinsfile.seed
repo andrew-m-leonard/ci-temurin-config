@@ -47,7 +47,7 @@
 
 // ci-adoptium-pipelines repository containing the Job DSL scripts.
 // Override these to pin to a fork or specific branch.
-def PIPELINES_REPO_URL    = 'https://github.com/adoptium/ci-adoptium-pipelines.git'
+def PIPELINES_REPO_URL    = 'https://github.com/andrew-m-leonard/ci-adoptium-pipelines.git'
 def PIPELINES_REPO_BRANCH = 'main'
 
 // ---------------------------------------------------------------------------
