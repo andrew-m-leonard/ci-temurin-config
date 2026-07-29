@@ -16,9 +16,6 @@ set -euo pipefail
 #   SCM_REF              - Git tag/ref for the build (e.g., jdk-21.0.2+13)
 #   RELEASE              - Boolean: true for release builds, false for EA
 #
-# Optional Environment Variables:
-#   BUILD_REPO_URL       - temurin-build repository URL
-#   BUILD_REF            - temurin-build branch/tag
 ################################################################################
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -50,9 +47,9 @@ log_info "  Java Version: ${JAVA_TO_BUILD}"
 log_info "  SCM Ref: ${SCM_REF}"
 log_info "  Release: ${RELEASE}"
 
-# Set defaults
-BUILD_REPO_URL="${BUILD_REPO_URL:-https://github.com/adoptium/temurin-build.git}"
-BUILD_REF="${BUILD_REF:-master}"
+# Read temurin-build repo and branch from pipeline-config.json
+BUILD_REPO_URL=$(get_config_value "${CONFIG_FILE}" ".refs.buildRepoUrl")
+BUILD_REF=$(get_config_value "${CONFIG_FILE}" ".refs.buildRef")
 
 # Create temporary workspace directories
 COMPARE_WORKSPACE="${WORKSPACE}/reproducible-compare"

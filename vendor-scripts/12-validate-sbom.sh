@@ -16,13 +16,19 @@ set -euo pipefail
 # Optional Environment Variables:
 #   JAVA_VERSION         - Java version (extracted from CONFIG_FILE if not set)
 #   SCM_REF              - SCM reference (extracted from CONFIG_FILE if not set)
-#   TEMURIN_BUILD_REPO   - temurin-build repo URL (default: https://github.com/adoptium/temurin-build.git)
-#   TEMURIN_BUILD_BRANCH - Branch to clone (default: master)
 #
 # Exit Codes:
 #   0 - All SBOM files validated successfully
 #   1 - Validation failed or no SBOM files found
 ################################################################################
+
+# ---------------------------------------------------------------------------
+# Resolve script directory to find shared lib utilities from ci-adoptium-pipelines
+# PIPELINE_ROOT: set by CI pipelines where WORKSPACE is not the location of
+#   the ci-adoptium-pipelines repo. Falls back to WORKSPACE if not set.
+# ---------------------------------------------------------------------------
+PIPELINE_LIB="${PIPELINE_ROOT:-${WORKSPACE}}/scripts/lib"
+source "${PIPELINE_LIB}/config-utils.sh"
 
 echo "=== Temurin SBOM Validation Stage ==="
 
@@ -32,9 +38,9 @@ echo "=== Temurin SBOM Validation Stage ==="
 : "${INPUT_ARTIFACTS_DIR:?INPUT_ARTIFACTS_DIR environment variable is not set}"
 : "${TARGET_DIR:?TARGET_DIR environment variable is not set}"
 
-# Set defaults for temurin-build repository
-TEMURIN_BUILD_REPO="${TEMURIN_BUILD_REPO:-https://github.com/adoptium/temurin-build.git}"
-TEMURIN_BUILD_BRANCH="${TEMURIN_BUILD_BRANCH:-master}"
+# Read temurin-build repo and branch from pipeline-config.json
+TEMURIN_BUILD_REPO=$(get_config_value "${CONFIG_FILE}" ".refs.buildRepoUrl")
+TEMURIN_BUILD_BRANCH=$(get_config_value "${CONFIG_FILE}" ".refs.buildRef")
 TEMURIN_BUILD_DIR="${WORKSPACE}/temurin-build-sbom-validation"
 
 # Clone temurin-build repository if not already present
