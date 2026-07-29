@@ -57,7 +57,7 @@ def PIPELINES_REPO_BRANCH = 'main'
 // ---------------------------------------------------------------------------
 
 pipeline {
-    agent { label 'ci.role.worker' }
+    agent any
 
     // NOTE: Do NOT declare CONFIG_REPO_URL / CONFIG_REPO_BRANCH here.
     // A parameters{} block in the Jenkinsfile causes Jenkins to reset parameter
