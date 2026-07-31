@@ -1,7 +1,7 @@
 {
   "jenkinsfilePath": "ci/jenkins/Jenkinsfile.declarative",
   "pipelineTimeoutHours": 8,
-  "activeNodeTimeoutMinutes": 1,
+  "activeNodeTimeoutMinutes": 12,
   "jobConfiguration": {
     "defaultParameters": {
       "VARIANT": "temurin",
@@ -10,7 +10,7 @@
       "ENABLE_INSTALLERS": true,
       "SIGN_ARTIFACTS": true,
       "PUBLISH_ARTIFACTS": false,
-      "RUN_REPRODUCIBLE_COMPARE": false
+      "RUN_REPRODUCIBLE_COMPARE": true
     },
     "logRotation": {
       "daysToKeep": 30,
