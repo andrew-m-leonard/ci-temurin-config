@@ -73,9 +73,9 @@ if [ -z "${SCM_REF:-}" ]; then
     echo "Extracted SCM_REF from config: ${SCM_REF}"
 fi
 
-# Find all SBOM JSON files (excluding metadata files)
+# Find all SBOM JSON files (excluding metadata files and params files)
 echo "Searching for SBOM files in ${INPUT_ARTIFACTS_DIR}..."
-SBOM_FILES=$(find "${INPUT_ARTIFACTS_DIR}" -name '*sbom*.json' -type f | grep -v metadata || true)
+SBOM_FILES=$(find "${INPUT_ARTIFACTS_DIR}" -name '*sbom*.json' -type f ! -name '*.params.json' | grep -v metadata || true)
 
 if [ -z "${SBOM_FILES}" ]; then
     echo "WARNING: No SBOM files found in ${INPUT_ARTIFACTS_DIR}"
