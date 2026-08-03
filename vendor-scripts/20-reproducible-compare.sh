@@ -223,6 +223,7 @@ log_info "  Upstream: ${UPSTREAM_JDK_DIR}"
 log_info "  Built:    ${BUILT_JDK_DIR}"
 
 COMPARE_OUTPUT="${COMPARE_WORKSPACE}/comparison-report.txt"
+COMPARE_EXIT_CODE=0
 cd "${COMPARE_WORKSPACE}"
 
 if bash "${REPRO_COMPARE_SCRIPT}" "${VARIANT}" "${UPSTREAM_JDK_DIR}" "${VARIANT}" "${BUILT_JDK_DIR}" "${REPRO_OS}" | tee "${COMPARE_OUTPUT}"; then
@@ -236,11 +237,10 @@ else
     log_error "WARNING: Reproducible build comparison FAILED (exit code: ${COMPARE_EXIT_CODE})"
     [ -f "${COMPARE_OUTPUT}" ] && cat "${COMPARE_OUTPUT}"
     [ -f "${COMPARE_WORKSPACE}/reprotest.diff" ] && cat "${COMPARE_WORKSPACE}/reprotest.diff"
-    exit ${COMPARE_EXIT_CODE}
 fi
 
 ################################################################################
-# Copy results to TARGET_DIR
+# Copy results to TARGET_DIR (always, so artifacts are archived on failure too)
 ################################################################################
 
 log_section "Copying comparison results to TARGET_DIR"
@@ -254,3 +254,4 @@ mkdir -p "${TARGET_DIR}"
     && log_info "Copied: reprotest.diff"
 
 log_info "Stage 20: Temurin Reproducible Build Comparison - Complete"
+exit ${COMPARE_EXIT_CODE}
