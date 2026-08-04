@@ -7,7 +7,7 @@
       "additionalNodeLabels": "sw.os.mac.10_14",
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     },
     "x86-64_linux": {
@@ -25,7 +25,7 @@
         "temurin": "--enable-dtrace"
       },
       "buildArgs": {
-        "temurin": "--create-source-archive --create-jre-image --create-sbom"
+        "temurin": "--create-source-archive --create-jre-image"
       }
     },
     "x86-64_alpine-linux": {
@@ -34,7 +34,7 @@
       "dockerImage": "adoptopenjdk/alpine3_build_image",
       "configureArgs": "--enable-headless-only=yes",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     },
     "aarch64_alpine-linux": {
@@ -43,7 +43,7 @@
       "dockerImage": "adoptopenjdk/alpine3_build_image",
       "configureArgs": "--enable-headless-only=yes",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     },
     "x86-64_windows": {
@@ -51,7 +51,7 @@
       "arch": "x64",
       "additionalNodeLabels": "sw.os.windows.2012&&sw.tool.vs.2019",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     },
     "x86-32_windows": {
@@ -59,7 +59,7 @@
       "arch": "x86-32",
       "additionalNodeLabels": "sw.os.windows.2012&&sw.tool.vs.2019",
       "buildArgs": {
-        "temurin": "--jvm-variant client,server --create-jre-image --create-sbom"
+        "temurin": "--jvm-variant client,server --create-jre-image"
       }
     },
     "ppc64_aix": {
@@ -71,7 +71,7 @@
       },
       "cleanWorkspaceAfterBuild": true,
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     },
     "s390x_linux": {
@@ -79,7 +79,7 @@
       "arch": "s390x",
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     },
     "ppc64le_linux": {
@@ -91,7 +91,7 @@
         "openj9": "--enable-dtrace --enable-jitserver"
       },
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     },
     "aarch64_linux": {
@@ -101,7 +101,7 @@
       "configureArgs": "--enable-dtrace",
       "testDynamic": false,
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     },
     "aarch64_mac": {
@@ -109,7 +109,7 @@
       "arch": "aarch64",
       "additionalNodeLabels": "sw.os.mac.11",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     },
     "arm_linux": {
@@ -120,7 +120,7 @@
       "dockerArgs": "--platform linux/arm/v7",
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     }
   },

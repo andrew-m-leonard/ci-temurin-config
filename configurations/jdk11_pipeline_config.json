@@ -10,7 +10,7 @@
         "temurin": "--enable-dtrace=auto --disable-ccache"
       },
       "buildArgs": {
-        "temurin": "--create-sbom"
+        "temurin": ""
       }
     },
     "x86-64_linux": {
@@ -30,7 +30,7 @@
         "bisheng": "--enable-dtrace=auto --with-extra-cflags=-fstack-protector-strong --with-extra-cxxflags=-fstack-protector-strong --with-jvm-variants=server --disable-warnings-as-errors"
       },
       "buildArgs": {
-        "temurin": "--create-source-archive --create-sbom --enable-sbom-strace"
+        "temurin": "--create-source-archive --enable-sbom-strace"
       }
     },
     "x86-64_alpine-linux": {
@@ -42,7 +42,7 @@
         "temurin": "--enable-headless-only=yes --disable-ccache"
       },
       "buildArgs": {
-        "temurin": "--create-sbom --enable-sbom-strace"
+        "temurin": "--enable-sbom-strace"
       }
     },
     "aarch64_alpine-linux": {
@@ -54,7 +54,7 @@
         "temurin": "--enable-headless-only=yes --disable-ccache --with-jobs=4"
       },
       "buildArgs": {
-        "temurin": "--create-sbom --enable-sbom-strace"
+        "temurin": "--enable-sbom-strace"
       }
     },
     "x86-64_windows": {
@@ -72,7 +72,7 @@
         "temurin": "--disable-ccache"
       },
       "buildArgs": {
-        "temurin": "--jvm-variant client,server --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
+        "temurin": "--jvm-variant client,server --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     },
     "x86-32_windows": {
@@ -86,7 +86,7 @@
         "temurin": "--disable-ccache"
       },
       "buildArgs": {
-        "temurin": "--jvm-variant client,server --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
+        "temurin": "--jvm-variant client,server --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     },
     "ppc64_aix": {
@@ -98,7 +98,7 @@
         "temurin": "--disable-ccache"
       },
       "buildArgs": {
-        "temurin": "--create-sbom"
+        "temurin": ""
       }
     },
     "s390x_linux": {
@@ -110,7 +110,7 @@
         "temurin": "--enable-dtrace=auto --disable-ccache"
       },
       "buildArgs": {
-        "temurin": "--create-sbom --enable-sbom-strace"
+        "temurin": "--enable-sbom-strace"
       }
     },
     "sparcv9_solaris": {
@@ -121,7 +121,7 @@
         "temurin": "--enable-dtrace=auto --disable-ccache"
       },
       "buildArgs": {
-        "temurin": "--create-sbom"
+        "temurin": ""
       }
     },
     "ppc64le_linux": {
@@ -133,7 +133,7 @@
         "openj9": "--enable-dtrace=auto"
       },
       "buildArgs": {
-        "temurin": "--create-sbom --enable-sbom-strace"
+        "temurin": "--enable-sbom-strace"
       }
     },
     "aarch64_mac": {
@@ -142,7 +142,7 @@
       "additionalNodeLabels": "sw.tool.xcode.15_0_1",
       "configureArgs": "--disable-ccache",
       "buildArgs": {
-        "temurin": "--create-sbom"
+        "temurin": ""
       }
     },
     "arm_linux": {
@@ -156,7 +156,7 @@
         "temurin": "--enable-dtrace=auto --disable-ccache --with-jobs=4"
       },
       "buildArgs": {
-        "temurin": "--create-sbom"
+        "temurin": ""
       }
     },
     "aarch64_linux": {
@@ -174,7 +174,7 @@
         "bisheng": "--enable-dtrace=auto --with-extra-cflags=-fstack-protector-strong --with-extra-cxxflags=-fstack-protector-strong --with-jvm-variants=server"
       },
       "buildArgs": {
-        "temurin": "--create-sbom --enable-sbom-strace"
+        "temurin": "--enable-sbom-strace"
       }
     },
     "riscv64_linux": {
@@ -194,7 +194,7 @@
         "bisheng": "x64"
       },
       "buildArgs": {
-        "temurin": "--create-sbom",
+        "temurin": "",
         "openj9": "--cross-compile",
         "bisheng": "--cross-compile --branch risc-v"
       },
@@ -216,7 +216,7 @@
         "temurin": "--disable-ccache"
       },
       "buildArgs": {
-        "temurin": "--jvm-variant client,server --create-sbom --cross-compile --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
+        "temurin": "--jvm-variant client,server --cross-compile --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     }
   },

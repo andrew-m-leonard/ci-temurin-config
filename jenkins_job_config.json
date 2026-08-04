@@ -1,16 +1,17 @@
 {
   "jenkinsfilePath": "ci/jenkins/Jenkinsfile.declarative",
   "pipelineTimeoutHours": 8,
-  "activeNodeTimeoutMinutes": 12,
+  "activeNodeTimeoutMinutes": 10,
   "jobConfiguration": {
     "defaultParameters": {
       "VARIANT": "temurin",
       "CLEAN_WORKSPACE_AFTER_STAGE": true,
+      "CREATE_SBOM": true,
       "RUN_TESTS": true,
       "ENABLE_INSTALLERS": true,
       "SIGN_ARTIFACTS": true,
       "PUBLISH_ARTIFACTS": false,
-      "RUN_REPRODUCIBLE_COMPARE": true
+      "RUN_REPRODUCIBLE_COMPARE": false
     },
     "logRotation": {
       "daysToKeep": 30,
@@ -20,7 +21,6 @@
     }
   },
   "stageAgentLabels": {
-    "__any__": "ci.role.worker",
     "Initialize": "ci.role.worker",
     "Build": "ci.role.build&&sw.os.{os}&&hw.arch.{arch}",
     "Internal Code Sign": "eclipse-codesign",

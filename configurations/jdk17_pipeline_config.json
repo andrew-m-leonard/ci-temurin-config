@@ -7,7 +7,7 @@
       "additionalNodeLabels": "sw.tool.xcode.15_0_1",
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     },
     "x86-64_linux": {
@@ -25,7 +25,7 @@
         "temurin": "--enable-dtrace"
       },
       "buildArgs": {
-        "temurin": "--create-source-archive --create-jre-image --create-sbom --enable-sbom-strace"
+        "temurin": "--create-source-archive --create-jre-image --enable-sbom-strace"
       }
     },
     "x86-64_alpine-linux": {
@@ -34,7 +34,7 @@
       "dockerImage": "adoptopenjdk/alpine3_build_image",
       "configureArgs": "--enable-headless-only=yes",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
+        "temurin": "--create-jre-image --enable-sbom-strace"
       }
     },
     "aarch64_alpine-linux": {
@@ -46,7 +46,7 @@
         "temurin": "--enable-headless-only=yes --with-jobs=4"
       },
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
+        "temurin": "--create-jre-image --enable-sbom-strace"
       }
     },
     "x86-64_windows": {
@@ -57,7 +57,7 @@
       "dockerCredential": "bbb9fa70-a1de-4853-b564-5f02193329ac",
       "additionalNodeLabels": "sw.os.windows.2022&&sw.tool.vs.2022",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
+        "temurin": "--create-jre-image --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     },
     "x86-32_windows": {
@@ -68,7 +68,7 @@
       "dockerCredential": "bbb9fa70-a1de-4853-b564-5f02193329ac",
       "additionalNodeLabels": "sw.os.windows.2022&&sw.tool.vs.2022",
       "buildArgs": {
-        "temurin": "--jvm-variant client,server --create-jre-image --create-sbom --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
+        "temurin": "--jvm-variant client,server --create-jre-image --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     },
     "ppc64_aix": {
@@ -77,7 +77,7 @@
       "additionalNodeLabels": "sw.tool.xlc.13&&sw.os.aix.7_2",
       "cleanWorkspaceAfterBuild": true,
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     },
     "s390x_linux": {
@@ -86,7 +86,7 @@
       "dockerImage": "rhel7_build_image",
       "configureArgs": "--enable-dtrace",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
+        "temurin": "--create-jre-image --enable-sbom-strace"
       }
     },
     "ppc64le_linux": {
@@ -94,7 +94,7 @@
       "arch": "ppc64le",
       "dockerImage": "adoptopenjdk/centos7_build_image",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
+        "temurin": "--create-jre-image --enable-sbom-strace"
       }
     },
     "aarch64_linux": {
@@ -106,7 +106,7 @@
         "temurin": "--enable-dtrace --with-jobs=4"
       },
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
+        "temurin": "--create-jre-image --enable-sbom-strace"
       }
     },
     "aarch64_mac": {
@@ -114,7 +114,7 @@
       "arch": "aarch64",
       "additionalNodeLabels": "sw.tool.xcode.15_0_1",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom"
+        "temurin": "--create-jre-image"
       }
     },
     "arm_linux": {
@@ -128,7 +128,7 @@
         "temurin": "--enable-dtrace --with-jobs=4"
       },
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom --enable-sbom-strace"
+        "temurin": "--create-jre-image --enable-sbom-strace"
       }
     },
     "riscv64_linux": {
@@ -139,7 +139,7 @@
       "dockerArgs": "--platform linux/riscv64",
       "configureArgs": "--enable-headless-only=yes --enable-dtrace",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom --use-adoptium-devkit gcc-14.2.0-Fedora_28-b00"
+        "temurin": "--create-jre-image --use-adoptium-devkit gcc-14.2.0-Fedora_28-b00"
       }
     },
     "aarch64_windows": {
@@ -151,7 +151,7 @@
       "crossCompile": "x64",
       "additionalNodeLabels": "sw.os.windows.2022&&sw.tool.vs.2022",
       "buildArgs": {
-        "temurin": "--create-jre-image --create-sbom --cross-compile --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
+        "temurin": "--create-jre-image --cross-compile --use-adoptium-devkit vs2022_redist_14.40.33807_10.0.26100.1742"
       }
     }
   },

@@ -65,7 +65,7 @@
       "enabled": true
     }
   ],
-  "defaultBuildArgs": "--create-jre-image --create-sbom",
+  "defaultBuildArgs": "",
   "defaultConfigureArgs": "",
   "defaultVariant": "temurin",
   "configFilePrefix": "configurations/",
