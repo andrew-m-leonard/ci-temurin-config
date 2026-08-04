@@ -21,6 +21,7 @@
     }
   },
   "stageAgentLabels": {
+    "__any__": "ci.role.worker",
     "Initialize": "ci.role.worker",
     "Build": "ci.role.build&&sw.os.{os}&&hw.arch.{arch}",
     "Internal Code Sign": "eclipse-codesign",
