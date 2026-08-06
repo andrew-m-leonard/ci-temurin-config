@@ -13,7 +13,7 @@ set -euo pipefail
 #   CONFIG_FILE          - Path to pipeline-config.json
 #   INPUT_ARTIFACTS_DIR  - Directory containing input artifacts from previous stage
 #   TARGET_DIR           - Directory for this stage's output
-#   RELEASE              - Boolean: true for release builds, false for EA
+#   RELEASE_TYPE         - Build type: RELEASE or NIGHTLY (default: NIGHTLY)
 #
 # Stage Parameters (set by the pipeline from params.json):
 #   SCM_REF              - Git tag/ref identifying the version to compare (mandatory, no default)
@@ -32,8 +32,8 @@ log_section "Stage 20: Temurin Reproducible Build Comparison"
 # Validate standard environment (WORKSPACE, CONFIG_FILE, TARGET_DIR)
 validate_standard_environment
 
-# Validate RELEASE is set
-require_env "RELEASE"
+# Derive RELEASE boolean from RELEASE_TYPE (consistent with 02-build.sh)
+RELEASE="$([[ "${RELEASE_TYPE:-NIGHTLY}" == "RELEASE" ]] && echo "true" || echo "false")"
 
 # SCM_REF must be explicitly provided — there is no meaningful default for this
 # stage. An empty value means we don't know what version to compare against.
