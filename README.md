@@ -147,7 +147,7 @@ Runs the AQA `extended.functional` / `functional/buildAndPackage` test suite aga
 Sources `${PIPELINE_ROOT}/scripts/lib/logging-utils.sh` and `config-utils.sh` from `ci-adoptium-pipelines`.
 
 **Required env:** `WORKSPACE`, `CONFIG_FILE`, `INPUT_ARTIFACTS_DIR`, `TARGET_DIR`, `BUILD_NUMBER`
-**Reads from config:** `JAVA_TO_BUILD`, `TARGET_OS`, `ARCHITECTURE`, `refs.aqaRef`, `refs.aqaRepoUrl`, `refs.buildRef`, `refs.buildRepoUrl`
+**Reads from config:** `JAVA_TO_BUILD`, `TARGET_OS`, `ARCHITECTURE`, `repoDefaults.aqaRef`, `repoDefaults.aqaRepoUrl`, `repoDefaults.buildRef`, `repoDefaults.buildRepoUrl`
 **Outputs:** TKG result tree in `TARGET_DIR/`, `TARGET_DIR/smoke-test-summary.json`
 
 ### `12-validate-sbom.sh`

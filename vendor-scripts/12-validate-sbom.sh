@@ -39,8 +39,8 @@ echo "=== Temurin SBOM Validation Stage ==="
 : "${TARGET_DIR:?TARGET_DIR environment variable is not set}"
 
 # Read temurin-build repo and branch from pipeline-config.json
-TEMURIN_BUILD_REPO=$(get_config_value "${CONFIG_FILE}" ".refs.buildRepoUrl")
-TEMURIN_BUILD_BRANCH=$(get_config_value "${CONFIG_FILE}" ".refs.buildRef")
+TEMURIN_BUILD_REPO=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRepoUrl")
+TEMURIN_BUILD_BRANCH=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRef")
 TEMURIN_BUILD_DIR="${WORKSPACE}/temurin-build-sbom-validation"
 
 # Clone temurin-build repository if not already present

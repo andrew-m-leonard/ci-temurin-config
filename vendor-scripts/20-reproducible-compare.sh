@@ -48,8 +48,8 @@ log_info "  SCM Ref: ${SCM_REF}"
 log_info "  Release: ${RELEASE}"
 
 # Read temurin-build repo and branch from pipeline-config.json
-BUILD_REPO_URL=$(get_config_value "${CONFIG_FILE}" ".refs.buildRepoUrl")
-BUILD_REF=$(get_config_value "${CONFIG_FILE}" ".refs.buildRef")
+BUILD_REPO_URL=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRepoUrl")
+BUILD_REF=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRef")
 
 # Create temporary workspace directories
 COMPARE_WORKSPACE="${WORKSPACE}/reproducible-compare"

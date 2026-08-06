@@ -49,10 +49,10 @@ main() {
     java_version=$(get_config_value "${CONFIG_FILE}" ".buildConfig.JAVA_TO_BUILD")
     target_os=$(get_config_value "${CONFIG_FILE}" ".buildConfig.TARGET_OS")
     architecture=$(get_config_value "${CONFIG_FILE}" ".buildConfig.ARCHITECTURE")
-    aqa_ref=$(get_config_value "${CONFIG_FILE}" ".refs.aqaRef")
-    aqa_repo_url=$(get_config_value "${CONFIG_FILE}" ".refs.aqaRepoUrl")
-    build_ref=$(get_config_value "${CONFIG_FILE}" ".refs.buildRef")
-    build_repo_url=$(get_config_value "${CONFIG_FILE}" ".refs.buildRepoUrl")
+    aqa_ref=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.aqaRef")
+    aqa_repo_url=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.aqaRepoUrl")
+    build_ref=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRef")
+    build_repo_url=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRepoUrl")
 
     local aqa_tests_branch="${aqa_ref}"
     local aqa_tests_repo="${aqa_repo_url}"
