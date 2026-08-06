@@ -38,10 +38,17 @@ echo "=== Temurin SBOM Validation Stage ==="
 : "${INPUT_ARTIFACTS_DIR:?INPUT_ARTIFACTS_DIR environment variable is not set}"
 : "${TARGET_DIR:?TARGET_DIR environment variable is not set}"
 
-# Read temurin-build repo and branch from pipeline-config.json
+# Read temurin-build repo and branch from pipeline-config.json.
+# BUILD_REF stage param takes precedence; fall back to the repo default
+# from pipeline-config.json (.repoDefaults.buildRef), then hard-coded 'master'.
 TEMURIN_BUILD_REPO=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRepoUrl")
-TEMURIN_BUILD_BRANCH=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRef")
+CONFIG_BUILD_REF=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRef")
+BUILD_REF_SOURCE="default"; [[ -n "${BUILD_REF:-}" ]] && BUILD_REF_SOURCE="param"
+TEMURIN_BUILD_BRANCH="${BUILD_REF:-${CONFIG_BUILD_REF:-master}}"
 TEMURIN_BUILD_DIR="${WORKSPACE}/temurin-build-sbom-validation"
+
+echo "  Build Repo URL : ${TEMURIN_BUILD_REPO} (default)"
+echo "  Build Ref      : ${TEMURIN_BUILD_BRANCH} (${BUILD_REF_SOURCE})"
 
 # Clone temurin-build repository if not already present
 if [ ! -d "${TEMURIN_BUILD_DIR}" ]; then

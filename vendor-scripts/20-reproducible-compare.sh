@@ -13,8 +13,11 @@ set -euo pipefail
 #   CONFIG_FILE          - Path to pipeline-config.json
 #   INPUT_ARTIFACTS_DIR  - Directory containing input artifacts from previous stage
 #   TARGET_DIR           - Directory for this stage's output
-#   SCM_REF              - Git tag/ref for the build (e.g., jdk-21.0.2+13)
 #   RELEASE              - Boolean: true for release builds, false for EA
+#
+# Stage Parameters (set by the pipeline from params.json):
+#   SCM_REF              - Git tag/ref identifying the version to compare (mandatory, no default)
+#   BUILD_REF            - Git branch/tag for temurin-build (optional, falls back to pipeline-config.json)
 #
 ################################################################################
 
@@ -29,15 +32,31 @@ log_section "Stage 20: Temurin Reproducible Build Comparison"
 # Validate standard environment (WORKSPACE, CONFIG_FILE, TARGET_DIR)
 validate_standard_environment
 
-# Validate additional required environment variables for this stage
-require_env "SCM_REF"
+# Validate RELEASE is set
 require_env "RELEASE"
+
+# SCM_REF must be explicitly provided — there is no meaningful default for this
+# stage. An empty value means we don't know what version to compare against.
+if [[ -z "${SCM_REF:-}" ]]; then
+    log_error "SCM_REF is not set or empty."
+    log_error "This stage requires a specific Git tag/ref (e.g. jdk-21.0.2+13) to"
+    log_error "identify the published Adoptium binary to compare against."
+    log_error "Set SCM_REF via the stage parameter before triggering this stage."
+    exit 1
+fi
 
 # Extract configuration values
 VARIANT=$(get_config_value "${CONFIG_FILE}" ".buildConfig.VARIANT")
 TARGET_OS=$(get_config_value "${CONFIG_FILE}" ".buildConfig.TARGET_OS")
 ARCHITECTURE=$(get_config_value "${CONFIG_FILE}" ".buildConfig.ARCHITECTURE")
 JAVA_TO_BUILD=$(get_config_value "${CONFIG_FILE}" ".buildConfig.JAVA_TO_BUILD")
+
+# BUILD_REF stage param takes precedence; fall back to the repo default
+# from pipeline-config.json (.repoDefaults.buildRef), then hard-coded 'master'.
+BUILD_REPO_URL=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRepoUrl")
+CONFIG_BUILD_REF=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRef")
+BUILD_REF_SOURCE="default"; [[ -n "${BUILD_REF:-}" ]] && BUILD_REF_SOURCE="param"
+BUILD_REF="${BUILD_REF:-${CONFIG_BUILD_REF:-master}}"
 
 log_info "Configuration:"
 log_info "  Variant: ${VARIANT}"
@@ -46,10 +65,8 @@ log_info "  Architecture: ${ARCHITECTURE}"
 log_info "  Java Version: ${JAVA_TO_BUILD}"
 log_info "  SCM Ref: ${SCM_REF}"
 log_info "  Release: ${RELEASE}"
-
-# Read temurin-build repo and branch from pipeline-config.json
-BUILD_REPO_URL=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRepoUrl")
-BUILD_REF=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRef")
+log_info "  Build Repo URL: ${BUILD_REPO_URL} (default)"
+log_info "  Build Ref: ${BUILD_REF} (${BUILD_REF_SOURCE})"
 
 # Create temporary workspace directories
 COMPARE_WORKSPACE="${WORKSPACE}/reproducible-compare"
@@ -57,7 +74,7 @@ JDK_UPSTREAM="${COMPARE_WORKSPACE}/jdk-upstream"
 JDK_BUILT="${COMPARE_WORKSPACE}/jdk-built"
 TEMURIN_BUILD_DIR="${COMPARE_WORKSPACE}/temurin-build"
 
-log_info "Creating comparison workspace: ${COMPARE_WORKSPACE}"
+log_info "  Creating comparison workspace: ${COMPARE_WORKSPACE}"
 mkdir -p "${JDK_UPSTREAM}" "${JDK_BUILT}"
 
 ################################################################################

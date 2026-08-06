@@ -54,20 +54,24 @@ main() {
     build_ref=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRef")
     build_repo_url=$(get_config_value "${CONFIG_FILE}" ".repoDefaults.buildRepoUrl")
 
-    local aqa_tests_branch="${aqa_ref}"
+    # Stage params take precedence; fall back to the repo defaults from
+    # pipeline-config.json, then hard-coded 'master'.
     local aqa_tests_repo="${aqa_repo_url}"
-    local temurin_build_branch="${build_ref}"
+    local aqa_tests_branch; aqa_tests_branch="${AQA_REF:-${aqa_ref:-master}}"
+    local aqa_ref_source="default"; [[ -n "${AQA_REF:-}" ]] && aqa_ref_source="param"
     local temurin_build_repo="${build_repo_url}"
+    local temurin_build_branch; temurin_build_branch="${BUILD_REF:-${build_ref:-master}}"
+    local build_ref_source="default"; [[ -n "${BUILD_REF:-}" ]] && build_ref_source="param"
 
     log_info "Test Configuration:"
     log_info "  Java Version     : ${java_version}"
     log_info "  Target OS        : ${target_os}"
     log_info "  Architecture     : ${architecture}"
     log_info "  AQA Suite        : ${BUILD_LIST} / ${TARGET_SUITE}"
-    log_info "  AQA Repo         : ${aqa_tests_repo}"
-    log_info "  AQA Ref          : ${aqa_tests_branch}"
-    log_info "  Temurin Build    : ${temurin_build_repo}"
-    log_info "  Temurin Build Ref: ${temurin_build_branch}"
+    log_info "  AQA Repo         : ${aqa_tests_repo} (default)"
+    log_info "  AQA Ref          : ${aqa_tests_branch} (${aqa_ref_source})"
+    log_info "  Temurin Build    : ${temurin_build_repo} (default)"
+    log_info "  Temurin Build Ref: ${temurin_build_branch} (${build_ref_source})"
 
     # -----------------------------------------------------------------------
     # Locate and extract the JDK artifact
