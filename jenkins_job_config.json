@@ -2,6 +2,7 @@
   "jenkinsfilePath": "ci/jenkins/Jenkinsfile.declarative",
   "pipelineTimeoutHours": 8,
   "activeNodeTimeoutMinutes": 10,
+  "pipelineBaseFolder": "temurin-pipelines",
   "jobConfiguration": {
     "defaultParameters": {
       "VARIANT": "temurin",
